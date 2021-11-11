@@ -12,6 +12,9 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "pug": "^3.0.2",
+    "pug-loader": "^2.4.0",
+    "pug-plain-loader": "^1.1.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.3.7",
     "vue-router": "^3.2.0",

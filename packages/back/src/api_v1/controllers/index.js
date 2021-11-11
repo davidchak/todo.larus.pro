@@ -1,28 +1,35 @@
 const Joi = require('joi')
 
+
 class BaseController {
-  // _responce= {
-  //     data: null,
-  //     error: null,
-  //     status: null,
-  // }
-  // constructor(req, res){
-  //     this.req = req,
-  //     this.res = res;
-  // }
-  // set data(result){
-  //     this._responce.data = result;
-  // }
-  // set error(result){
-  //     this._responce.error = result;
-  // }
-  // set status(result){
-  //     this._responce.status = result;
-  // }
-  // success(data){
-  //     this.data =
-  //     return this.res()
-  // }
+  #data;
+  #error;
+  #status= 200;
+
+  constructor(req, res) {
+    this.req = req,
+    this.res = res
+  };
+
+  set data(val){
+    this.#data = val
+  };
+
+  set error(val){
+    this.#error = val
+  };
+
+  set status(val){
+    this.#status = val
+  };
+
+  get responce(){
+    return this.res.json({
+      data: this.#data,
+      error: this.#error,
+      status: this.#status
+    })
+  }
 }
 
 module.exports = {
