@@ -1,0 +1,103 @@
+version: '3'
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
+
+services:
+  front:
+    image: nginx:latest
+    container_name: 'front'
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: 10.0.0.10
+
+  back:
+    build:
+      context: .
+      dockerfile: server.dockerfile
+    container_name: 'server'
+    restart: unless-stopped
+    volumes:
+    networks:
+      net:
+        ipv4_address: 10.0.0.11
+    depends_on:
+      - db
+      - mq
+
+  db:
+    image: 'postgres:14-alpine'
+    restart: unless-stopped
+    container_name: 'postgres'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=postgres
+    volumes:
+      - './db/data:/var/lib/postgresql/data'
+    networks:
+      net:
+        ipv4_address: 10.0.0.12
+
+  adminer:
+    image: 'adminer'
+    container_name: adminer
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    networks:
+      net:
+        ipv4_address: 10.0.0.13
+
+  mq:
+    image: 'rabbitmq:3.9-management-alpine'
+    container_name: 'mq'
+    restart: unless-stoped
+    ports:
+      - '5672:5672'
+    environment: RABBITMQ_DEFAULT_PASS_FILE
+      RABBITMQ_DEFAULT_USER_FILE
+      RABBITMQ_MANAGEMENT_SSL_CACERTFILE
+      RABBITMQ_MANAGEMENT_SSL_CERTFILE
+      RABBITMQ_MANAGEMENT_SSL_DEPTH
+      RABBITMQ_MANAGEMENT_SSL_FAIL_IF_NO_PEER_CERT
+      RABBITMQ_MANAGEMENT_SSL_KEYFILE
+      RABBITMQ_MANAGEMENT_SSL_VERIFY
+      RABBITMQ_SSL_CACERTFILE
+      RABBITMQ_SSL_CERTFILE
+      RABBITMQ_SSL_DEPTH
+      RABBITMQ_SSL_FAIL_IF_NO_PEER_CERT
+      RABBITMQ_SSL_KEYFILE
+      RABBITMQ_SSL_VERIFY
+      RABBITMQ_VM_MEMORY_HIGH_WATERMARK
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 250M
+        reservations:
+          cpus: '0.1'
+          memory: 50M
+    volumes:
+    networks:
+      net:
+        ipv4_address: 10.0.0.14
+
+  cache:
+    image: 'redis:6-alpine'
+    container_name: 'cache'
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: 10.0.0.15
+    volumes:
+      - './cache/redis.conf:/usr/local/etc/redis/redis.conf'
