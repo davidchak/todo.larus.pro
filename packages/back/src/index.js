@@ -1,20 +1,17 @@
-const path = require('path');
 const { v4: uuidv4  } = require("uuid");
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const history = require('connect-history-api-fallback');
-const moment = require('moment');
-const Bree = require('bree');
-const Graceful = require('@ladjs/graceful');
-const pino = require('pino');
 const { db } = require("./infra/db");
 const SequelizeStore = require("connect-session-sequelize")(
   session.Store
 );
+const { ScheduleWorker } = require("./worker");
 
-module.exports.createApp = env => {
+
+module.exports.createApp = (env) => {
   const app = express()
 
   app.use(cookieParser())
@@ -89,35 +86,11 @@ module.exports.createApp = env => {
 
   db.sync({force: false});
 
+  console.log(process.env.TEST_ENV);
+
   return app
 }
 
 module.exports.createWorker = (env) => {
-  class Worker{
-    constructor(){
-      this.name = uuidv4(),
-
-      this.bree = new Bree({
-        logger: pino(),
-        root: path.resolve('./src/worker/jobs'),
-        jobs: [{
-          name: 'test',
-          interval: '5s'
-        }],
-      });
-
-      this.graceful = new Graceful({brees: [this.bree]});
-    };
-
-    start(){
-      this.graceful.listen();
-      this.bree.start();
-    };
-
-    stop(){
-      this.bree.stop();
-    };
-  };
-
-  return new Worker();
+  return new ScheduleWorker(env);
 };

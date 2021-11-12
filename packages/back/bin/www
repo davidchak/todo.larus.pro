@@ -12,8 +12,8 @@ let http = require('http');
 /**
  * Create HTTP server.
  */
-let app = createApp(process.env.NODE_ENV) 
-let port = normalizePort(process.env.PORT || '3000');
+let app = createApp(process.env.NODE_ENV)
+let port = normalizePort(process.env.PORT || process.env.DEFAULT_PORT);
 app.set('port', port);
 
 /**
