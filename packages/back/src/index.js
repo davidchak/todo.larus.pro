@@ -9,6 +9,7 @@ const SequelizeStore = require("connect-session-sequelize")(
   session.Store
 );
 const { ScheduleWorker } = require("./worker");
+require('dotenv').config()
 
 
 module.exports.createApp = (env) => {
@@ -92,5 +93,6 @@ module.exports.createApp = (env) => {
 }
 
 module.exports.createWorker = (env) => {
-  return new ScheduleWorker(env);
+  let workerInstance = new ScheduleWorker(env);
+  return workerInstance.init();
 };
