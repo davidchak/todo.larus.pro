@@ -25,11 +25,17 @@
     "dev": "yarn workspaces dev",
     "test": "yarn workspaces test",
     "build": "yarn workspaces build",
+
     "dev:front": "yarn workspace @toda/front dev",
     "test:front": "yarn workspace @toda/front test",
     "build:front": "yarn workspace @toda/front build",
-    "dev:back": "yarn workspace @toda/back dev",
-    "test:back": "yarn workspace @toda/back test",
-    "build:back": "yarn workspace @toda/back build"
+
+    "dev:api": "yarn workspace @toda/back dev:api",
+    "test:api": "yarn workspace @toda/back test:api",
+    "build:api": "yarn workspace @toda/back build:api",
+
+    "dev:worker": "yarn workspace @toda/back dev:worker",
+    "test:worker": "yarn workspace @toda/back test:worker",
+    "build:worker": "yarn workspace @toda/back build:worker"
   }
 }

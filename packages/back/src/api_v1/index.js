@@ -10,8 +10,8 @@ route.get('/', analiticsMiddleware, (req, res) => {
   res.json(req.session)
 })
 
-route.get('/task', async (req, res) => {
-  return await TaskController.exec(req, res)
-})
+// route.get('/task', async (req, res) => {
+//   return await TaskController.exec(req, res)
+// })
 
 module.exports = route;

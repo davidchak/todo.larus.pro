@@ -1,9 +1,14 @@
+const path = require('path');
 const { v4: uuidv4  } = require("uuid");
 const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const history = require('connect-history-api-fallback');
+const moment = require('moment');
+const Bree = require('bree');
+const Graceful = require('@ladjs/graceful');
+const pino = require('pino');
 const { db } = require("./infra/db");
 const SequelizeStore = require("connect-session-sequelize")(
   session.Store
@@ -29,16 +34,16 @@ module.exports.createApp = env => {
       }),
 
       secret: 'wow very secret',
-      
+
       genid: function(req) {
         return uuidv4() // use UUIDs for session IDs
       },
-      
+
       cookie: {
         maxAge: 600000,
         secure: false, // if https enabled
       },
-      
+
       saveUninitialized: false,
       resave: false,
       unset: 'destroy',
@@ -86,3 +91,33 @@ module.exports.createApp = env => {
 
   return app
 }
+
+module.exports.createWorker = (env) => {
+  class Worker{
+    constructor(){
+      this.name = uuidv4(),
+
+      this.bree = new Bree({
+        logger: pino(),
+        root: path.resolve('./src/worker/jobs'),
+        jobs: [{
+          name: 'test',
+          interval: '5s'
+        }],
+      });
+
+      this.graceful = new Graceful({brees: [this.bree]});
+    };
+
+    start(){
+      this.graceful.listen();
+      this.bree.start();
+    };
+
+    stop(){
+      this.bree.stop();
+    };
+  };
+
+  return new Worker();
+};
