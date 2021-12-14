@@ -24,17 +24,16 @@
     "singleQuote": true
   },
   "scripts": {
-    "dev": "yarn workspaces dev",
-    "test": "yarn workspaces test",
-    "build": "yarn workspaces build",
-    "dev:front": "yarn workspace @toda/front dev",
-    "test:front": "yarn workspace @toda/front test",
-    "build:front": "yarn workspace @toda/front build",
-    "dev:api": "yarn workspace @toda/back dev:api",
-    "test:api": "yarn workspace @toda/back test:api",
-    "build:api": "yarn workspace @toda/back build:api",
-    "dev:worker": "yarn workspace @toda/back dev:worker",
-    "test:worker": "yarn workspace @toda/back test:worker",
-    "build:worker": "yarn workspace @toda/back build:worker"
+    "dev": "npm --workspaces --if-present run dev",
+    "test:unit": "npm --workspaces --if-present run test:unit",
+    "test:e2e": "npm --workspaces --if-present run test:e2e",
+    "build": "npm --workspaces --if-present run build",
+    "client:dev": "npm --workspace @toda/client run dev",
+    "client:test": "npm --workspace @toda/client run test",
+    "client:build": "npm --workspace @toda/client run build",
+    "api:dev": "npm --workspace @toda/api run dev",
+    "api:test:e2e": "npm --workspace @toda/api run test:e2e",
+    "api:test:unit": "npm --workspace @toda/api run test:unit",
+    "api:build": "npm --workspace @toda/api run build"
   }
 }

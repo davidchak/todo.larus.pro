@@ -4,27 +4,16 @@
   "private": true,
   "scripts": {
     "start": "node -r dotenv/config ./bin/www",
-    "dev:api": "nodemon -r dotenv/config ./bin/www",
-    "dev:worker": "nodemon ./bin/worker"
+    "dev": "nodemon ./bin/worker",
+    "test:unit": "jest"
   },
   "dependencies": {
     "@ladjs/graceful": "^1.0.5",
     "bree": "^7.0.0",
-    "connect-history-api-fallback": "^1.6.0",
-    "connect-session-sequelize": "^7.1.2",
-    "cookie-parser": "^1.4.5",
-    "debug": "~2.6.9",
-    "dotenv": "^10.0.0",
     "express": "~4.16.1",
-    "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
-    "joi": "^17.4.2",
-    "morgan": "~1.9.1",
-    "npm": "^8.1.1",
     "pino": "^7.2.0",
     "pino-http": "^6.0.0",
-    "sequelize": "^6.8.0",
-    "sequelstore-connect": "^1.1.5",
     "sqlite3": "^5.0.2",
     "uuid": "^8.3.2"
   },

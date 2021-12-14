@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config ./src/index.js",
     "prod": "node -r dotenv/config ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit": "jest --config ./jest.unit.config.json",
+    "test:e2e": "jest --config ./jest.e2e.config.json"
   },
   "author": "David Chakiryan <davidchak@yandex.ru>",
   "license": "ISC",
