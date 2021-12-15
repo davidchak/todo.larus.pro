@@ -4,7 +4,52 @@ export class UserController extends BaseController{
   constructor(userServiceInstance) {
     super();
     this.userService = userServiceInstance;
+    /**
+    * @openapi
+    * /user:
+    *   get:
+    *     summary: Получение пользователя по id
+    *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+    *     parameters:
+    *       - in: path
+    *         name: id
+    *         required: true
+    *         description: Numeric ID of the user to retrieve.
+    *         schema:
+    *           type: integer
+    *     responses:
+    *       200:
+    *         description: Возвращает объект пользователя.
+    *         content:
+    *           application/json:
+    *             schema:
+    *               type: object
+    *               properties:
+    *                 data:
+    *                   type: object
+    *                   properties:
+    *                     id:
+    *                       type: integer
+    *                       description: The user ID.
+    *                       example: 1
+    *                     name:
+    *                       type: string
+    *                       description: The user's name.
+    *                       example: test
+    *                     email:
+    *                       type: string
+    *                       description: The user's email.
+    *                       example: test@mail.ru
+    */
     this.router.get("/get/:id", this.getUser.bind(this));
+
+    /**
+     * @openapi
+     * /user:
+     *   post:
+     *     summary: Создание нового пользователя
+     *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+    */
     this.router.post("/login", this.login.bind(this));
   }
 
