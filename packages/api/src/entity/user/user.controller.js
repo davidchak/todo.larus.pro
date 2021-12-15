@@ -1,15 +1,15 @@
-import { BaseController } from "../../common/base.controller.js";
+import { BaseController } from "../../common/controller/base.controller.js";
 
 export class UserController extends BaseController{
   constructor(userServiceInstance) {
     super();
     this.userService = userServiceInstance;
-    this.router.get("/:id", this.getUser.bind(this));
+    this.router.get("/get/:id", this.getUser.bind(this));
     this.router.post("/login", this.login.bind(this));
   }
 
   async getUser({params}, res, next){
-    const result = await this.userService.findUserById(params.id);
+    const result = await this.userService.findById(params.id);
     if(!result){
       return this.err(res, null, null);
     }
@@ -17,6 +17,15 @@ export class UserController extends BaseController{
   };
 
   async login({body}, res, next){
+    const result = await this.userService.findByEmail(body.email);
+    if(!result || result.password != body.password){
+      return this.err(res, 401, 'Не авторизован')
+    }
+
+    this.ok(res, result);
+  };
+
+  async register({body}, res, next){
     const result = await this.userService.findUserByEmail(body.email);
     if(!result || result.password != body.password){
       return this.err(res, 401, 'Не авторизован')

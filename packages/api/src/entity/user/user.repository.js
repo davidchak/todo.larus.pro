@@ -1,49 +1,25 @@
-import sequelize from 'sequelize';
-
+import { User } from "./user.entity.js";
 
 export class UserRepository {
-  constructor(dbInstance, loggerInstance){
-    this.logger = loggerInstance;
-    this.model = dbInstance.db.define('User', {
-      name: {
-        type: sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
+  constructor(connection, logger){
+    this.logger = logger;
+    this.ormRepository = connection.getRepository(User);
+  }
 
-      contacts: {
-        type: sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
+  async getAll(){
+    return await this.ormRepository.find();
+  }
 
-      password: {
-        type: sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-
-      specialization: {
-        type: sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-
-      role: {
-        type: sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-      // courses(таблица)
-      // complite - составной
-      // medals(таблица)
-    }, {
-      modelName: 'user',
-      tablename: 'users',
-      timestamps: false,
+  async getById(id){
+    return await this.ormRepository.find({
+      id
     });
+  }
 
-    this.model.sync({ alter: true })
-      .then(() => {
-        this.logger.info('Table <User> synchronized successfully')
-      })
-      .catch(err => {
-        this.logger.error(`Table <User> synchronized with error: ${err}`)
-      })
+  async create(args){
+    let user = new User(...args);
+    return await this.ormRepository.save(user);
   }
 }
+
+

@@ -1,22 +1,21 @@
+import {User} from './user.entity.js';
+
 export class UserService {
-  constructor(userRepositoryInstance){
-    this.repository = userRepositoryInstance;
+  constructor(userRepository){
+    this.repository = userRepository;
   }
 
-  async findUserById(id){
-    return await this.repository.model.findByPk(id);
+  async findById(id){
+    let user = await this.repository.getById(id);
+    return user;
   }
 
-  async findUserByEmail(email){
-    return await this.repository.model.findOne({
-      where: {
-        contacts: email
-      }
-    });
+  async findByEmail(email){
+    return new User('test', 'test@mail.ru', '1234');
   }
 
-  async create(obj){
-    // return await this.repository.create(obj);
-    return null;
+  async create(args){
+    let user = new User(...args);
+    this.repository.create(user);
   }
 }

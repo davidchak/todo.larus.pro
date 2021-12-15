@@ -1,35 +1,43 @@
 import { App } from "./app/api.app.js";
 import { Server } from "./server/server.js";
-import { DbConfig } from "./config/db.config.js";
-import { DbService } from "./database/db.service.js";
-import { LoggerService } from "./logger/logger.service.js";
+import { DbConfig } from "./service/config/db.config.js";
+import { DbService } from "./service/database/db.service.js";
+import { OpenApiService } from "./service/openapi/openapi.service.js";
+import { LoggerService } from "./service/logger/logger.service.js";
 import { UserRepository } from "./entity/user/user.repository.js";
 import { UserService } from "./entity/user/user.service.js";
 import { UserController } from "./entity/user/user.controller.js";
 import { UserSchema } from "./entity/user/user.entity.js";
 
-// Init outer service
-const loggerService = new LoggerService();
-const dbService = new DbService(DbConfig.connection, [UserSchema], loggerService);
+// Main loop
+(async function bootstrap(){
 
-// Init entity repository
-const userRepositoryInstance = new UserRepository(dbService, loggerService);
+  // Init outer service
+  const loggerService = new LoggerService();
+  const dbService = new DbService(DbConfig.connection, [UserSchema], loggerService);
+  await dbService.init();
+  await dbService.sync();
 
-// Init entity services
-const userService = new UserService(userRepositoryInstance);
+  const openApiService = new OpenApiService();
 
-// Init entiry controllers
-const userController = new UserController(userService);
+  // Init entity repository
+  const userRepository = new UserRepository(dbService.connection, loggerService);
 
-const api = new App(
-  dbService,
-  userController
-);
+  // Init entity services
+  const userService = new UserService(userRepository);
 
+  // Init entiry controllers
+  const userController = new UserController(userService);
 
-await api.init();
+  const api = new App(
+    dbService,
+    openApiService,
+    userController,
+  );
 
+  await api.init();
 
-const apiServer = new Server(api.app, process.env.PORT || 3000);
-apiServer.start();
-console.log(process.env.DB_HOST)
+  const apiServer = new Server(api.app, process.env.PORT || 3000);
+  apiServer.start();
+})()
+

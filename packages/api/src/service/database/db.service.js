@@ -1,20 +1,27 @@
-import { createConnection } from 'typeorm';
+import typeorm from 'typeorm';
 
 export class DbService{
+
+  _connection;
+
   constructor(options, entities, logger){
     this.logger = logger;
-    this.connection = await createConnection({
-      ...options,
-      entities
-    })
-    this.logger.info(`Db init with params: {host: ${options.host}, database: ${database}}`)
+    this.options = options;
+    this.entities = entities;
   }
 
-  async auth(){
+  get connection(){
+    return this._connection;
+  }
+
+  async init(){
     try {
-      await this.db.authenticate();
+        this._connection = await typeorm.createConnection({
+        ...this.options,
+        entities: this.entities
+      })
       this.logger.info('Db connection has been established successfully.');
-    } catch (err) {
+    } catch (e){
       this.logger.error(`Unable to connect to the database: ${err}`);
     }
   }
@@ -46,7 +53,7 @@ export class DbService{
     }
   };
 
-  async migrateMigrate(){
+  async revokeMigrate(){
     try {
       await this.connection.undoLastMigration();
       this.logger.info('Db migration revoke complete successfully.');
