@@ -3,6 +3,7 @@ import { Server } from "./server/server.js";
 import { DbConfig } from "./service/config/db.config.js";
 import { DbService } from "./service/database/db.service.js";
 import { OpenApiService } from "./service/openapi/openapi.service.js";
+import { AdminLkService } from "./service/admin/admin.service.js";
 import { LoggerService } from "./service/logger/logger.service.js";
 import { UserRepository } from "./entity/user/user.repository.js";
 import { UserService } from "./entity/user/user.service.js";
@@ -18,7 +19,9 @@ import { UserSchema } from "./entity/user/user.entity.js";
   await dbService.init();
   await dbService.sync();
 
+  // Init outer services
   const openApiService = new OpenApiService();
+  const adminLkService = new AdminLkService();
 
   // Init entity repository
   const userRepository = new UserRepository(dbService.connection, loggerService);
@@ -32,6 +35,7 @@ import { UserSchema } from "./entity/user/user.entity.js";
   const api = new App(
     dbService,
     openApiService,
+    adminLkService,
     userController,
   );
 

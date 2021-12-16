@@ -6,12 +6,14 @@ import pino from "pino-http";
 export class App {
   constructor(
     db,
-    openApi,
+    openApiService,
+    adminLkService,
     userController,
   ) {
     this.app = express();
     this.app.db = db;
-    this.openApi = openApi;
+    this.openApi = openApiService;
+    this.adminLk = adminLkService;
     this.userController = userController;
   }
 
@@ -22,6 +24,7 @@ export class App {
   }
 
   useRoutes() {
+    this.app.use("/admin", this.adminLk.router);
     this.app.use("/api/ui", this.openApi.router);
     this.app.use("/api/user", this.userController.router);
   }
