@@ -1,15 +1,27 @@
 import { EntitySchema } from "typeorm";
+import bcrypt from "bcryptjs";
 
 export class User {
-  constructor(name, email, password){
+  constructor(name, email, passwordHash=null){
     this.name = name;
     this.email = email;
-    this.password = password;
+    if(passwordHash){
+      this.password = this.password;
+    }
+  }
+
+  async setPassword(pass, salt){
+    this._password = await bcrypt.hash(pass, salt);
+  }
+
+  async comparePassword(pass){
+    return await bcrypt.compare(pass, this._password);
   }
 };
 
 export const UserSchema = new EntitySchema({
   name: "User",
+  tableName: "users",
   target: User,
   columns: {
     id: {

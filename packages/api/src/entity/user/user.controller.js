@@ -1,22 +1,25 @@
 import { BaseController } from "../../common/controller/base.controller.js";
 
 export class UserController extends BaseController{
-  constructor(userServiceInstance) {
+  constructor(userService) {
     super();
-    this.userService = userServiceInstance;
+    this.userService = userService;
     /**
     * @openapi
     * /user:
     *   get:
+    *     tags:
+    *       - "User"
     *     summary: Получение пользователя по id
     *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
     *     parameters:
-    *       - in: path
-    *         name: id
+    *       - in: "path"
+    *         name: "id"
+    *         type: "integer"
     *         required: true
-    *         description: Numeric ID of the user to retrieve.
-    *         schema:
-    *           type: integer
+    *         description: Идентификатор пользователя из базы
+    *         "schema":
+    *           "type": "integer"
     *     responses:
     *       200:
     *         description: Возвращает объект пользователя.
@@ -41,14 +44,16 @@ export class UserController extends BaseController{
     *                       description: The user's email.
     *                       example: test@mail.ru
     */
-    this.router.get("/get/:id", this.getUser.bind(this));
+    this.router.get("/:id", this.getUser.bind(this));
 
     /**
-     * @openapi
-     * /user:
-     *   post:
-     *     summary: Создание нового пользователя
-     *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+    * @openapi
+    * /user:
+    *   post:
+    *     tags:
+    *       - "User"
+    *     summary: Создание нового пользователя
+    *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
     */
     this.router.post("/login", this.login.bind(this));
   }

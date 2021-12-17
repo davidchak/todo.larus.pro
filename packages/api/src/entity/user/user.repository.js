@@ -6,12 +6,14 @@ export class UserRepository {
     this.ormRepository = connection.getRepository(User);
   }
 
-  async getAll(){
-    return await this.ormRepository.find();
+  async findByEmail(email){
+    return await this.ormRepository.findOne({
+      email
+    });
   }
 
-  async getById(id){
-    return await this.ormRepository.find({
+  async findById(id){
+    return await this.ormRepository.findOne({
       id
     });
   }

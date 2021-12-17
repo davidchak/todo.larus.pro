@@ -8,7 +8,7 @@ function createApp() {
   return createSSRApp({
     data() {
       return {
-        user: 'Василий Пупкин'
+        user: 'Test User'
       }
     },
     template: `<div>Текущий пользователь: {{ user }}</div>`

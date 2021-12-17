@@ -6,16 +6,26 @@ export class UserService {
   }
 
   async findById(id){
-    let user = await this.repository.getById(id);
-    return user;
+    return await this.repository.findById(id);
   }
 
   async findByEmail(email){
-    return new User('test', 'test@mail.ru', '1234');
+    return await this.repository.findByEmail(email);
   }
 
   async create(args){
     let user = new User(...args);
     this.repository.create(user);
+  }
+
+  async validate({email: password}){
+
+    const existedUser = await this.repository.findByEmail(email);
+    if(!existedUser){
+      return false;
+    }
+
+    const newUser = new User(existedUser.email, existedUser.name, existedUser.password);
+    return newUser.comparePassword(password);
   }
 }
