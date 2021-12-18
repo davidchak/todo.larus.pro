@@ -18,8 +18,7 @@ export class UserRepository {
     });
   }
 
-  async create(args){
-    let user = new User(...args);
+  async create(user){
     return await this.ormRepository.save(user);
   }
 }

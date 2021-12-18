@@ -27,7 +27,7 @@
     "pino-http": "^6.3.3",
     "sqlite3": "^5.0.2",
     "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.2.0",
+    "swagger-ui-express": "^4.3.0",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
