@@ -18,12 +18,10 @@ services:
         ipv4_address: 10.0.0.10
 
   api:
-    build:
-      context: ./api
-      dockerfile: api.dockerfile
-    container_name: 'server'
+    extends:
+      file: ./api/api.docker-compose.yml
+      service: api
     restart: unless-stopped
-    volumes: null
     networks:
       net:
         ipv4_address: 10.0.0.11
@@ -32,45 +30,27 @@ services:
       - mq
 
   db:
-    image: 'postgres:14-alpine'
-    restart: unless-stopped
-    container_name: 'postgres'
-    ports:
-      - '5432:5432'
-    environment:
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=postgres
-    volumes:
-      - './db/data:/var/lib/postgresql/data'
+    extends:
+      file: ./postgres/docker-compose.yml
+      service: db
     networks:
       net:
         ipv4_address: 10.0.0.12
 
-  adminer:
-    image: 'adminer'
-    container_name: adminer
-    restart: unless-stopped
-    ports:
-      - '8080:8080'
-    depends_on:
-      - db
+  db_gui:
+    extends:
+      file: ./postgres/docker-compose.yml
+      service: adminer
     networks:
       net:
         ipv4_address: 10.0.0.13
+    depends_on:
+      - db
 
-  mq:
-    image: 'rabbitmq:3.9-management-alpine'
-    container_name: 'mq'
-    restart: unless-stoped
-    ports:
-      - '5672:5672'
-    environment: RABBITMQ_DEFAULT_PASS_FILE RABBITMQ_DEFAULT_USER_FILE
-      RABBITMQ_MANAGEMENT_SSL_CACERTFILE RABBITMQ_MANAGEMENT_SSL_CERTFILE
-      RABBITMQ_MANAGEMENT_SSL_DEPTH RABBITMQ_MANAGEMENT_SSL_FAIL_IF_NO_PEER_CERT
-      RABBITMQ_MANAGEMENT_SSL_KEYFILE RABBITMQ_MANAGEMENT_SSL_VERIFY
-      RABBITMQ_SSL_CACERTFILE RABBITMQ_SSL_CERTFILE RABBITMQ_SSL_DEPTH
-      RABBITMQ_SSL_FAIL_IF_NO_PEER_CERT RABBITMQ_SSL_KEYFILE RABBITMQ_SSL_VERIFY
-      RABBITMQ_VM_MEMORY_HIGH_WATERMARK
+  rmq:
+    extends:
+      file: ./rabbitmq/docker-compose.yml
+      service: rmq
     deploy:
       resources:
         limits:
@@ -79,17 +59,15 @@ services:
         reservations:
           cpus: '0.1'
           memory: 50M
-    volumes: null
     networks:
       net:
         ipv4_address: 10.0.0.14
 
   cache:
-    image: 'redis:6-alpine'
-    container_name: 'cache'
-    restart: unless-stopped
+    redis:
+      extends:
+        file: ./redis/docker-compose.yml
+        service: redis
     networks:
       net:
         ipv4_address: 10.0.0.15
-    volumes:
-      - './cache/redis.conf:/usr/local/etc/redis/redis.conf'

@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    container_name: client
+    ports:
+      - 80:80
+    restart: always
