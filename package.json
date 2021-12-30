@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
+    "packages/api",
     "packages/client",
-    "packages/api"
+    "packages/admin"
   ],
   "engines": {
     "node": ">=14.x",
@@ -27,13 +28,6 @@
     "dev": "npm --workspaces --if-present run dev",
     "test:unit": "npm --workspaces --if-present run test:unit",
     "test:e2e": "npm --workspaces --if-present run test:e2e",
-    "build": "npm --workspaces --if-present run build",
-    "client:dev": "npm --workspace @toda/client run dev",
-    "client:test": "npm --workspace @toda/client run test",
-    "client:build": "npm --workspace @toda/client run build",
-    "api:dev": "npm --workspace @toda/api run dev",
-    "api:test:e2e": "npm --workspace @toda/api run test:e2e",
-    "api:test:unit": "npm --workspace @toda/api run test:unit",
-    "api:build": "npm --workspace @toda/api run build"
+    "build": "npm --workspaces --if-present run build"
   }
 }
