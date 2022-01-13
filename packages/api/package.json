@@ -13,6 +13,7 @@
   "author": "David Chakiryan <davidchak@yandex.ru>",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.7.1",
     "@vue/server-renderer": "^3.2.26",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
