@@ -3,6 +3,8 @@ import { v4 as uuid } from 'uuid';
 import cn from 'classnames';
 import { TaskList } from './layouts/tasklist/TaskList';
 import { Button } from './components/button/Button';
+import { useStoreContext } from './store/Store.hook';
+import { Task } from './entities/task/Task.class';
 
 type TaskType = {
 	id: string,
@@ -15,30 +17,16 @@ function App() {
 		app: true
 	});
 
-	let defaultTaskState: TaskType[] = []
+	const { addTask } = useStoreContext();
 
-	let [tasks, setTask] = React.useState(defaultTaskState);
-
-	const addTask = (taskName: string = 'test') => {
-
-		let newTask: TaskType = {
-			id: uuid(),
-			name: taskName
-		};
-
-		setTask([...tasks, newTask])
-	};
-
-	const removeTask = (taskId: string) => {
-		setTask(tasks.filter(item => item.id !== taskId))
-	};
+	const newTask = new Task(uuid(), "Test");
 
 	return (
 		<div className={AppClass}>
 			<div>
-				<Button text='add' action={addTask} />
+				<Button text='add' action={() => addTask(newTask)} />
 			</div>
-			<TaskList tasks={tasks} />
+			<TaskList />
 		</div>
 	);
 }

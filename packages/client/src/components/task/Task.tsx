@@ -2,30 +2,32 @@ import React from 'react';
 import { css, jsx } from '@emotion/react';
 import cn from 'classnames';
 import { Button } from '../button/Button';
+import { ITask } from '../../entities/task/Task.interface';
+import { useStoreContext } from '../../store/Store.hook';
 
 
 type TaskPropsType = {
-	id: string,
-	text: string,
-	remove: (id: string) => void;
+	task: ITask;
 }
 
+export const Task = ({ task }: TaskPropsType) => {
 
-export const Task = ({ id, text, remove }: TaskPropsType) => {
+	const { removeTask } = useStoreContext();
 
 	const taskStyles = css({
-		width: '100%',
-		height: '100%',
+		width: '400px',
+		height: '40px',
+		border: '1px solid grey'
 	})
 
 	const taskClass = cn({
 		taskStyles: true
 	})
 
-	return <div className='taskClass'>
-		<span>{text}</span>
+	return <div className={taskClass}>
+		<span>{task.name}</span>
 		<span>
-			<Button text='remove' action={remove(id)} />
+			<Button text='remove' action={() => removeTask(task.id)} />
 		</span>
 	</div>
 } 

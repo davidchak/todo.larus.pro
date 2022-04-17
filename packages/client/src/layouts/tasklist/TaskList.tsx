@@ -2,6 +2,7 @@ import React from "react"
 import { css, jsx } from "@emotion/react";
 import classNames from "classnames";
 import { Task } from "../../components/task/Task";
+import { useStoreContext } from '../../store/Store.hook';
 
 
 type TaskType = {
@@ -10,14 +11,14 @@ type TaskType = {
 }
 
 type TaskListPropsType = {
-	tasks: TaskType[]
+	taskList: TaskType[]
 }
 
-export const TaskList = (props: TaskListPropsType) => {
+export const TaskList = () => {
 
-	const { tasks } = props;
+	const { taskList, removeTask } = useStoreContext();
 
 	return <div>
-		{tasks.map(item => <Task key={item.id} text={item.name} />)}
+		{taskList.map(item => <Task key={item.id} task={item} />)}
 	</div>
 }
