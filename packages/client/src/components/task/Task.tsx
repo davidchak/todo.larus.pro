@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { Button } from '../button/Button';
 import { ITask } from '../../entities/task/Task.interface';
 import { useStoreContext } from '../../store/Store.hook';
+import styles from './Task.module.css';
 
 
 type TaskPropsType = {
@@ -14,19 +15,9 @@ export const Task = ({ task }: TaskPropsType) => {
 
 	const { removeTask } = useStoreContext();
 
-	const taskStyles = css({
-		width: '400px',
-		height: '40px',
-		border: '1px solid grey'
-	})
-
-	const taskClass = cn({
-		taskStyles: true
-	})
-
-	return <div className={taskClass}>
-		<span>{task.name}</span>
-		<span>
+	return <div className={styles.task}>
+		<span className={styles.task__name}>{task.name}</span>
+		<span className={styles.task__control}>
 			<Button text='remove' action={() => removeTask(task.id)} />
 		</span>
 	</div>

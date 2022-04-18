@@ -8,7 +8,7 @@ export const useTaskHook = () => {
 	const [taskList, setTask] = React.useState<TaskListDefaultValueType>([])
 
 	const addTask = (task: ITask) => {
-		setTask([...taskList, task]);
+		setTask([task, ...taskList]);
 	};
 
 	const removeTask = (id: string) => {

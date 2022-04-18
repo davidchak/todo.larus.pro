@@ -4,7 +4,7 @@ import { Input } from '../../components/input/Input';
 import { Button } from '../../components/button/Button';
 import { TaskEntity } from '../../entities/task/Task.class';
 import { v4 as uuid } from 'uuid';
-
+import styles from './AddTaskForm.module.css';
 
 export const AddTaskForm = () => {
 
@@ -20,7 +20,7 @@ export const AddTaskForm = () => {
 		setValue('');
 	}
 
-	return <div>
+	return <div className={styles.form}>
 		<Input placeholder="Новая задача" value={value} onChange={inputHandler}></Input>
 		<Button text='add' action={buttonClickHandler} />
 	</div>
