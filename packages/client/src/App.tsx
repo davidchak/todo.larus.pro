@@ -2,6 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { TaskList } from './layouts/tasklist/TaskList';
 import { AddTaskForm } from './layouts/addTaskForm/AddTaskForm';
+import { TaskPropertiesModal } from './layouts/taskPropertiesModal/TaskPropertiesModal';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 		<div className={AppClass}>
 			<AddTaskForm />
 			<TaskList />
+			<TaskPropertiesModal />
 		</div>
 	);
 }

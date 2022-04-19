@@ -1,9 +1,9 @@
 import React from "react"
 import { ITask } from '../../entities/task/Task.interface';
+import { StoreTaskPropsTypes, TaskListDefaultValueType } from "./task.hook.types";
 
-type TaskListDefaultValueType = ITask[];
 
-export const useTaskHook = () => {
+export function useTaskHook(): StoreTaskPropsTypes {
 
 	const [taskList, setTask] = React.useState<TaskListDefaultValueType>([])
 
