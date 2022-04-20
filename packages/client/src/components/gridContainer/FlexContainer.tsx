@@ -10,6 +10,9 @@ export const FlexContainer = ({
 	gap = GapEnum.md,
 }: FlexContainerPropsTypes) => {
 	// TODO: реализовать сборку классов или стилей на основе входных данных
+	const flexContainerClasses = cn({
+		'flex-container': true
+	})
 
-	return <div>{children}</div>
+	return <div className={flexContainerClasses}>{children}</div>
 }
