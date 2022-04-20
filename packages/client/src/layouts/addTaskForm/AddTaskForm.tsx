@@ -16,6 +16,10 @@ export const AddTaskForm = () => {
 	}
 
 	const buttonClickHandler = () => {
+		if (value.length < 2) {
+			return;
+		}
+
 		addTask(new TaskEntity(uuid(), value))
 		setValue('');
 	}
