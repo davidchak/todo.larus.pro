@@ -1,23 +1,16 @@
-import React from 'react';
-import cn from 'classnames';
-import { TaskList } from './layouts/tasklist/TaskList';
-import { AddTaskForm } from './layouts/addTaskForm/AddTaskForm';
-import { TaskPropertiesModal } from './layouts/taskPropertiesModal/TaskPropertiesModal';
+import { ContentLayout } from './layouts/contentlayout/ContentLayout';
+import { MenuLayout } from './layouts/menuLayout/MenuLayout';
+import { FlexContainer } from './components/flexContainer/FlexContainer';
+import { DirectionEnum } from './components/flexContainer/FlexContainer.types';
+import styles from './App.module.scss';
 
-
-function App() {
-
-	let AppClass = cn({
-		app: true
-	});
-
+export const App = () => {
 	return (
-		<div className={AppClass}>
-			<AddTaskForm />
-			<TaskList />
-			<TaskPropertiesModal />
+		<div className={styles.app}>
+			<FlexContainer >
+				<MenuLayout />
+				<ContentLayout />
+			</FlexContainer>
 		</div>
 	);
 }
-
-export default App;

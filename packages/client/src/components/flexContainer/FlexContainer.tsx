@@ -1,5 +1,6 @@
 import { FlexContainerPropsTypes, DirectionEnum, AlignItemsEnum, JustifyContentEnum, GapEnum } from "./FlexContainer.types";
 import cn from 'classnames';
+import styles from './FlexContainer.module.scss';
 
 
 export const FlexContainer = ({
@@ -9,10 +10,13 @@ export const FlexContainer = ({
 	alignItems = AlignItemsEnum.start,
 	gap = GapEnum.md,
 }: FlexContainerPropsTypes) => {
+
 	// TODO: реализовать сборку классов или стилей на основе входных данных
-	const flexContainerClasses = cn({
-		'flex-container': true
-	})
+	const flexContainerClasses = cn(
+		styles['flex-container'],
+		direction == DirectionEnum.row ? styles['flex-container-row'] : null,
+		direction == DirectionEnum.column ? styles['flex-container-column'] : null,
+	)
 
 	return <div className={flexContainerClasses}>{children}</div>
 }
