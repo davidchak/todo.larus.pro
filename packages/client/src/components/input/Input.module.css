@@ -1,3 +1,11 @@
+.input_field {
+	width: 100%;
+}
+
 .input {
-	min-height: 40px;
+	width: 100%;
+}
+
+.label {
+	width: 100%;
 }

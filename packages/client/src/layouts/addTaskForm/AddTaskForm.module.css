@@ -1,13 +1,5 @@
 .form {
 	margin-bottom: 16px;
-	display: flex;
+	display: block;
 	width: 100%;
-}
-
-.form>input {
-	flex: 1 0 auto;
-}
-
-.form>.botton {
-	flex: 0 0 auto;
 }
