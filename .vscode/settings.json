@@ -8,7 +8,7 @@
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
 	// editor
-	"editor.minimap.enabled": true,
+	"editor.minimap.enabled": false,
 	"editor.formatOnPaste": true,
 	"editor.formatOnSave": true,
 	"editor.tabSize": 2,
