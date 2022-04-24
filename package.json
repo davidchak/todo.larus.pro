@@ -29,8 +29,5 @@
     "test:unit": "npm --workspaces --if-present run test:unit",
     "test:e2e": "npm --workspaces --if-present run test:e2e",
     "build": "npm --workspaces --if-present run build"
-  },
-  "devDependencies": {
-    "sass": "^1.50.1"
   }
 }
