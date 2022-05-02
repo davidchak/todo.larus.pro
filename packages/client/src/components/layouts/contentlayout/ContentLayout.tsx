@@ -7,7 +7,8 @@ import styles from './ContentLayout.module.scss';
 export const ContentLayout = () => {
 	return (
 		<div className={styles.content}>
-			content
+			<AddTaskForm />
+			<TaskList />
 		</div>
 	);
 }
