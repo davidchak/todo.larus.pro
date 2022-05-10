@@ -1,5 +1,5 @@
 import { TaskList } from '../tasklist/TaskList';
-import { AddTaskForm } from '../addTaskForm/AddTaskForm';
+import { AddTaskForm } from '../../ui/addTaskForm/AddTaskForm';
 import { TaskPropertiesModal } from '../taskPropertiesModal/TaskPropertiesModal';
 import styles from './ContentLayout.module.scss';
 

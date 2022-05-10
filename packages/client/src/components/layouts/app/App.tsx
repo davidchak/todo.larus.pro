@@ -1,6 +1,6 @@
-import { MenuLayout } from './components/layouts/menuLayout/MenuLayout';
-import { FlexContainer } from './components/ui/flexContainer/FlexContainer';
-import { ContentLayout } from './components/layouts/contentlayout/ContentLayout';
+import { MenuLayout } from '../menuLayout/MenuLayout';
+import { ContentLayout } from '../contentlayout/ContentLayout';
+import { FlexContainer } from '../../ui/flexContainer/FlexContainer';
 import { BrowserRouter } from 'react-router-dom';
 import styles from './App.module.scss';
 

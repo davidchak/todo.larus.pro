@@ -1,6 +1,6 @@
 import React from "react";
-import { Input } from "../../ui/input/Input";
-import { Button } from "../../ui/button/Button";
+import { Input } from "../input/Input";
+import { Button } from "../button/Button";
 import styles from './AddTaskForm.module.css';
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { addTask } from "../../../store/task/task.reducer";

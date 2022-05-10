@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import taskReducer from "./task/task.reducer";
 import modalReducer from "./modal/modal.reducer";
 import projectReducer from "./project/project.reducer";
+import menuReducer from "./menu/menu.reducer";
 
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
 		tasks: taskReducer,
 		projects: projectReducer,
 		modal: modalReducer,
+		menu: menuReducer,
 	},
 })
 

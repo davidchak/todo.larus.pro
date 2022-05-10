@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../button/Button';
 import { ITask } from '../../../store/task/task.entity';
 
-import styles from './Task.module.css';
+import styles from './Task.module.scss';
 import { useAppDispatch } from '../../../store';
 import { removeTask } from "../../../store/task/task.reducer";
 
