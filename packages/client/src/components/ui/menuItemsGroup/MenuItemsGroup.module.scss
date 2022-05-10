@@ -1,5 +1,28 @@
-.menu-items-group {
+.menu-item {
 	height: max-content;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	margin-bottom: 4px;
+
+	&__group {
+		height: 40px;
+		flex: 0 0 auto;
+		background-color: #2C3249;
+		line-height: 40px;
+		border-radius: 8px;
+		display: flex;
+		padding: 0px 16px;
+		margin-bottom: 4px;
+		font-size: 16px;
+	}
+
+	&__items-group {
+		display: none;
+
+
+		&_open {
+			display: block;
+		}
+	}
 }

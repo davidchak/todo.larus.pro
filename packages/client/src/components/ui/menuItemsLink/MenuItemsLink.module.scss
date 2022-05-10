@@ -1,0 +1,21 @@
+.menu-item__link {
+	height: 40px;
+	flex: 0 0 auto;
+	line-height: 40px;
+	padding: 0px 16px;
+	color: #A3A8B8;
+	border-radius: 8px;
+	margin-bottom: 4px;
+	border: 1px solid #15192C;
+	font-size: 14px;
+
+	&_active {
+		border: 1px solid #373D57;
+		color: #fff;
+	}
+
+	&_hovered {
+		border: 1px solid #6032EA;
+		color: #fff;
+	}
+}

@@ -11,5 +11,7 @@ export interface IMenuGroup {
 }
 
 export type MenuState = {
-	menuGroups: IMenuGroup[]
+	menuGroups: IMenuGroup[],
+	activeGroup: string,
+	activeSection: string,
 }

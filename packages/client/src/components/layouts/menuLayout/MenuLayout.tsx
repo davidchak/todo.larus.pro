@@ -6,6 +6,6 @@ export const MenuLayout = () => {
 	const menuGroups = useAppSelector(state => state.menu.menuGroups);
 
 	return <div className={styles.menu}>
-		{menuGroups.map(group => <MenuItemsGroup title={group.title} items={group.items} />)}
+		{menuGroups.map((group, index) => <MenuItemsGroup key={index} title={group.title} slug={group.slug} items={group.items} />)}
 	</div>
 }

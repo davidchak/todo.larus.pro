@@ -4,5 +4,5 @@ export interface ITask {
 	id: string,
 	createdAt: Date,
 	title: string,
-	project: IProject,
+	project: string,
 }

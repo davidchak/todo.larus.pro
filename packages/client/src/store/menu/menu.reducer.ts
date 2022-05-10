@@ -46,37 +46,27 @@ const initialState: MenuState = {
 				},
 			]
 		},
-	]
+	],
+	activeGroup: 'tasks',
+	activeSection: '',
 }
 
 const MenuReducer = createSlice({
 	name: "menu",
 	initialState,
 	reducers: {
-		addMenuGroupItem(state, action: PayloadAction<string>) { }
-		// addProject(state, action: PayloadAction<string>) {
-		// 	let project: IProject = {
-		// 		id: v4(),
-		// 		createdAt: new Date(),
-		// 		title: action.payload
-		// 	};
+		addMenuGroupItem(state, action: PayloadAction<string>) { },
 
-		// 	state.projects.push(project)
+		setActiveGroup(state, action: PayloadAction<string>) {
+			state.activeGroup = action.payload;
+		},
 
-		// 	if (state.projects.length === 1) {
-		// 		state.activeProject = project;
-		// 	}
-		// },
-		// removeProject(state, action) { },
-		// updateProject(state, action) { },
-		// setActive(state, action: PayloadAction<IProject>) {
-		// 	if (state.activeProject && state.activeProject.id !== action.payload.id) {
-		// 		state.activeProject = action.payload;
-		// 	}
-		// }
+		setActiveSection(state, action: PayloadAction<string>) {
+			state.activeSection = action.payload;
+		}
 	}
 })
 
-export const { addMenuGroupItem } = MenuReducer.actions;
+export const { setActiveGroup, setActiveSection } = MenuReducer.actions;
 
 export default MenuReducer.reducer;

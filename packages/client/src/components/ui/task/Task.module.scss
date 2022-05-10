@@ -1,20 +1,42 @@
 .task {
-	height: 50px;
-	background-color: rgb(175, 172, 172);
-	margin-bottom: 16px;
+	height: 64px;
+	background-color: #2C3249;
+	margin-bottom: 12px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	padding: 2px 8px;
-}
+	border-radius: 8px;
+	border: 2px solid #2C3249;
+	gap: 16px;
 
-.task__name {
-	font-size: 26px;
-	flex: 1 0 auto;
-}
+	&_hover {
+		border-color: #6032EA;
+	}
 
-.task__control {
-	flex: 0 0 200px;
-	display: flex;
-	justify-content: flex-end;
+	&_active {
+		border-color: #6032EA;
+		box-shadow: 2px 2px 2px #2C3249;
+	}
+
+	&__complete {
+		flex: 0 0 40px;
+	}
+
+	&__content {
+		flex: 1 0 auto;
+	}
+
+	&__tags {
+		flex: 0 0 200px;
+	}
+
+	&__date {
+		flex: 0 0 160px;
+	}
+
+	&__control {
+		flex: 0 0 40px;
+		display: flex;
+	}
 }

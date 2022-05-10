@@ -15,12 +15,12 @@ export default function useHover(ref: React.RefObject<HTMLDivElement>) {
 
 		node.addEventListener('mouseenter', on);
 		node.addEventListener('mousemove', on);
-		node.addEventListener('mouselive', off);
+		node.addEventListener('mouseleave', off);
 
 		return function () {
 			node.removeEventListener('mouseenter', on);
 			node.removeEventListener('mousemove', on);
-			node.removeEventListener('mouselive', off);
+			node.removeEventListener('mouseleave', off);
 		}
 	}, [])
 

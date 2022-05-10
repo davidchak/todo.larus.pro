@@ -2,16 +2,15 @@ import React from "react";
 import { Input } from "../input/Input";
 import { Button } from "../button/Button";
 import styles from './AddTaskForm.module.css';
-import { useAppDispatch, useAppSelector } from "../../../store";
-import { addTask } from "../../../store/task/task.reducer";
+import useMenu from '../../../store/menu/menu.hooks';
+import useTask from '../../../store/task/task.hooks';
+import { title } from "process";
 
 
 export const AddTaskForm = () => {
 
-	const dispatch = useAppDispatch();
-	const activeProject = useAppSelector(state => state.projects.activeProject);
-	const projects = useAppSelector(state => state.projects.projects);
-
+	const { activeMenuSection } = useMenu();
+	const { addTask } = useTask();
 	const [value, setValue] = React.useState('');
 
 	const inputHandler = (newValue: string) => {
@@ -23,8 +22,8 @@ export const AddTaskForm = () => {
 			return;
 		}
 
-		if (activeProject && projects.length > 0) {
-			dispatch(addTask({ title: value, project: activeProject }));
+		if (activeMenuSection && activeMenuSection.length > 0) {
+			addTask(value, activeMenuSection);
 			setValue('');
 		}
 	}
