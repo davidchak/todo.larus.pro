@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { MenuItemsLink } from '../menuItemsLink/MenuItemsLink';
 import useMenu from '../../../store/menu/menu.hooks';
+import { Button } from "../button/Button";
+import { SizeEnum } from '../styles.constant'
 
 
 type MenuItemsGroupPropsType = {
@@ -34,11 +36,26 @@ export const MenuItemsGroup = ({ title, slug, items }: MenuItemsGroupPropsType) 
 	)
 
 	return <div className={styles['menu-item']}>
-		<div className={styles['menu-item__group']} onClick={clickHandler}>
-			<span>{title}</span>
-		</div>
+		<Button
+			size={SizeEnum.md}
+			fullWidth={true}
+			text={title}
+			action={clickHandler}
+			withBorder={false}
+			withBackground={true} />
 		<div className={ItemsGroupStyles}>
-			{items.map((item, index) => <MenuItemsLink key={index} title={item.title} slug={item.slug} />)}
+			{
+				items.map(
+					(item, index) =>
+						<Button
+							key={index}
+							action={() => console.log(item.title)}
+							size={SizeEnum.md}
+							withBorder={true}
+							fullWidth={true}
+							text={item.title}
+						/>
+				)}
 		</div>
 	</div>
 }

@@ -1,0 +1,46 @@
+.button {
+	min-height: 30px;
+	width: max-content;
+	border-radius: 4px;
+	letter-spacing: 1px;
+	background-color: none;
+
+	&_size-sm {
+		height: 30px;
+		font-size: 11px;
+		padding: 8px 16px;
+	}
+
+	&_size-md {
+		height: 40px;
+		font-size: 14px;
+		padding: 10px 14px;
+	}
+
+	&_size-lg {
+		height: 54px;
+		font-size: 18px;
+		padding: 16px 24px;
+	}
+
+	&_full-width {
+		width: 100%;
+	}
+
+	&_active {
+		background-color: #373D57;
+	}
+
+	&_background {
+		background-color: #2C3249;
+		border: 1px solid #373D57;
+	}
+
+	&_background-active {
+		background-color: #373D57;
+	}
+
+	&_border-active {
+		border: 1px solid #6032EA;
+	}
+}
