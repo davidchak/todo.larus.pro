@@ -34,5 +34,6 @@
 	"stylelint.validate": [
 		"css",
 		"less"
-	]
+	],
+	"git.ignoreLimitWarning": true
 }
