@@ -1,0 +1,54 @@
+Arguments: 
+  /home/m0/.nvm/versions/node/v18.12.1/bin/node /home/m0/.nvm/versions/node/v18.12.1/bin/yarn dev
+
+PATH: 
+  /home/m0/.nvm/versions/node/v18.12.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/local/go/bin:/usr/local/go/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/m0/Dev/todo.larus.pro/package.json: Unexpected token } in JSON at position 594
+      at JSON.parse (<anonymous>)
+      at /home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+  	"name": "todo",
+  	"root": true,
+  	"private": true,
+  	"version": "1.0.0",
+  	"description": "",
+  	"workspaces": [
+  		"./apps/*"
+  	],
+  	"scripts": {
+  		"dev": "./scripts/dev/all.sh",
+  		"build": "lerna run --parallel build",
+  		"bootstrap": "lerna bootstrap --use-workspaces",
+  		"graph": "nx graph"
+  	},
+  	"repository": "git+https://github.com/davidchak/todo.larus.pro.git",
+  	"keywords": [],
+  	"author": "David Chakiryan <davidchak@yandex.ru>",
+  	"license": "ISC",
+  	"bugs": {
+  		"url": "https://github.com/davidchak/todo.larus.pro/issues"
+  	},
+  	"homepage": "https://github.com/davidchak/todo.larus.pro#readme",
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
