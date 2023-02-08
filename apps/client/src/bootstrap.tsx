@@ -1,13 +1,13 @@
 import React from "react";
-import Root from "./ui/root/Root";
+import { RouterProvider } from "react-router-dom";
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import { router } from "./router";
 import './assets/styles/index.css';
 
 
-// TODO: инициализировать все модули и процессы
-
-export function renderApp (router: any, appLogic: any, errorCollector: any){
+// TODO: инициализировать все модули и процессы, пробросить пропсами
+export function renderApp (){
 
   const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -16,8 +16,7 @@ export function renderApp (router: any, appLogic: any, errorCollector: any){
   root.render(
     <React.StrictMode>
       {/* TODO: добавить <AppLogicsProvider processes={} modules={} /> */}
-      {/* TODO: добавить <AppRouterProvider router={} /> */}
-      <Root />
+      <RouterProvider router={ router } />
     </React.StrictMode>
   );
 

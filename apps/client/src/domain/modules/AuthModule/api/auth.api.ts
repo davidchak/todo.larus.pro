@@ -1,13 +1,14 @@
-import { IAuthLoginDTO } from "./dto/authLogin.dto";
+// import { IAuthLoginDTO } from "./dto/authLogin.dto";
 
-export class AuthApi {
-  configService: any;
+// export class AuthApi {
+//   configService: any;
 
-  constructor(configService: any){
-    this.configService = configService;
-  }
+//   constructor(configService: any){
+//     this.configService = configService;
+//   }
 
-  async login(payload: IAuthLoginDTO){
+//   async login(payload: IAuthLoginDTO){
 
-  }
-}
+//   }
+// }
+export {}
