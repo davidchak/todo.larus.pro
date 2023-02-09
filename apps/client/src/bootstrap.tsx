@@ -4,10 +4,15 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { router } from "./router";
 import './assets/styles/index.css';
+import { configService, loggerService } from "./domain/services"
 
 
 // TODO: инициализировать все модули и процессы, пробросить пропсами
 export function renderApp (){
+  loggerService.info({
+    text: "Собираю приложение",
+    module: "bootstrap"
+  })
 
   const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

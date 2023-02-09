@@ -3,8 +3,8 @@ export interface ILoggerMessage {
   module: string
 }
 
-export interface ILoggerService {
+export type LoggerServiceType = () => ({
   warn: (msg: ILoggerMessage) => void
   error: (msg: ILoggerMessage) => void
   info: (msg: ILoggerMessage) => void
-}
+})

@@ -2,13 +2,14 @@ import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 import { mainPageLoader } from "./index";
 import { ITask } from "./types";
+import CodeEditor from "../../components/blocks/CodeEditor";
 
 const MainPage = () => {
   const data = useLoaderData() as  typeof mainPageLoader;
 
   return (<div>
     <h3>Main Page</h3>
-    <Suspense fallback={<p>Loading...</p>}>
+    {/* <Suspense fallback={<p>Loading...</p>}>
       <Await
         resolve={ data }
         errorElement={
@@ -20,7 +21,8 @@ const MainPage = () => {
             }
           }
       </Await>
-    </Suspense>
+    </Suspense> */}
+    <CodeEditor />
   </div>)
 }
 
