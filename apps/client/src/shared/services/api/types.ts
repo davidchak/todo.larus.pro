@@ -1,8 +1,8 @@
 import { AxiosInstance } from "axios"
 
 
-export type ApiServiceReturnType = {
+export type ApiServiceMethodsType = {
   getInstance: () => AxiosInstance
 }
 
-export type ApiServiceType = () => ApiServiceReturnType;
+export type ApiServiceType = () => ApiServiceMethodsType;

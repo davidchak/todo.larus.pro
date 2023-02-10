@@ -1,0 +1,19 @@
+{
+	"name": "@todo/client-api",
+	"version": "1.0.0",
+	"main": "dist/index.js",
+	"types": "dist/types.js",
+	"license": "MIT",
+	"scripts": {
+		"dev": "nodemon src/index.ts",
+		"test": "jest",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"chalk": "4"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.20",
+		"ts-node": "^10.9.1"
+	}
+}
