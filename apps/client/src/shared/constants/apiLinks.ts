@@ -3,6 +3,9 @@ export const API_BASE_URL = "/api";
 // Tasks
 export const API_TASKS_URL = "/tasks";
 
+// User
+export const API_USERS_URL = "/users";
+
 // Projects
 export const API_PROJECTS_URL = "/projects";
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_BASE_URL } from "../../constants/apiLisks";
+import { API_BASE_URL } from "../../constants/apiLinks";
 
 
 const http = axios.create({
