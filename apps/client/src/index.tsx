@@ -1,3 +1,18 @@
-import { renderApp } from "./bootstrap";
+import React from "react";
+import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import App from "./app";
 
-renderApp();
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+
+root.render(
+  <React.StrictMode>
+    {/* TODO: добавить <AppLogicsProvider processes={} modules={} /> */}
+    <App />
+  </React.StrictMode>
+);
+
+reportWebVitals();

@@ -1,57 +1,60 @@
 {
-  "name": "@todo/client",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@codemirror/commands": "^6.2.0",
-    "@codemirror/state": "^6.2.0",
-    "@codemirror/view": "^6.8.1",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.59",
-    "@types/react": "^18.0.20",
-    "@types/react-dom": "^18.0.6",
-    "axios": "^1.3.2",
-    "craco": "^0.0.3",
-    "lit": "^2.6.1",
-    "pubsub-js": "^1.9.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.1",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.8.3",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "dev": "craco start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/pubsub-js": "^1.8.3",
-    "@types/uuid": "^9.0.0"
-  }
+	"name": "@todo/client",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@codemirror/commands": "^6.2.0",
+		"@codemirror/state": "^6.2.0",
+		"@codemirror/view": "^6.8.1",
+		"@emotion/react": "^11.10.5",
+		"@emotion/styled": "^11.10.5",
+		"@testing-library/jest-dom": "^5.16.5",
+		"@testing-library/react": "^13.4.0",
+		"@testing-library/user-event": "^13.5.0",
+		"@types/jest": "^27.5.2",
+		"@types/node": "^16.11.59",
+		"@types/react": "^18.0.20",
+		"@types/react-dom": "^18.0.6",
+		"axios": "^1.3.2",
+		"class-transformer": "^0.5.1",
+		"class-validator": "^0.14.0",
+		"craco": "^0.0.3",
+		"lit": "^2.6.1",
+		"pubsub-js": "^1.9.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router-dom": "^6.8.1",
+		"react-scripts": "5.0.1",
+		"typescript": "^4.8.3",
+		"web-vitals": "^2.1.4",
+		"zustand": "^4.3.3"
+	},
+	"scripts": {
+		"dev": "craco start",
+		"build": "craco build",
+		"test": "craco test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@types/pubsub-js": "^1.8.3",
+		"@types/uuid": "^9.0.0"
+	}
 }

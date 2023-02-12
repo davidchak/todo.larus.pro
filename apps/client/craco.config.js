@@ -12,8 +12,8 @@ module.exports = {
       },
       path: path.resolve(__dirname, "dist")
     },
-    alias: {
-      "~": path.resolve(__dirname, "src")
-    }
+    // alias: {
+    //   "~": path.resolve(__dirname, "src")
+    // }
   },
 };
