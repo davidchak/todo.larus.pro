@@ -1,30 +1,25 @@
 Arguments: 
-  /home/m0/.nvm/versions/node/v18.12.1/bin/node /home/m0/.nvm/versions/node/v18.12.1/bin/yarn add -D nodemon ts-node -W @todo/client-api
+  /home/m0/.nvm/versions/node/v16.16.0/bin/node /home/m0/.nvm/versions/node/v16.16.0/bin/yarn workspaces run dev
 
 PATH: 
-  /home/m0/.nvm/versions/node/v18.12.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/local/go/bin:/usr/local/go/bin
+  /tmp/yarn--1676312112992-0.027092621190914823:/home/m0/Dev/todo.larus.pro/node_modules/.bin:/home/m0/.config/yarn/link/node_modules/.bin:/home/m0/Dev/todo.larus.pro/node_modules/.bin:/home/m0/.yarn/bin:/home/m0/.nvm/versions/node/v16.16.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v16.16.0/bin/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v16.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  18.12.1
+  16.16.0
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@todo%2fclient-api: Not found
-      at params.callback [as _callback] (/home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:66145:18)
-      at self.callback (/home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:140890:22)
-      at Request.emit (node:events:513:28)
-      at Request.<anonymous> (/home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:141862:10)
-      at Request.emit (node:events:513:28)
-      at IncomingMessage.<anonymous> (/home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:141784:12)
-      at Object.onceWrapper (node:events:627:28)
-      at IncomingMessage.emit (node:events:525:35)
-      at endReadableNT (node:internal/streams/readable:1359:12)
-      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+  SyntaxError: /home/m0/Dev/todo.larus.pro/apps/client/package.json: Unexpected token < in JSON at position 2
+      at JSON.parse (<anonymous>)
+      at /home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
