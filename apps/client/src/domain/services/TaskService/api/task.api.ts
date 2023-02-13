@@ -97,14 +97,14 @@ export const TaskApi = function(http: AxiosInstance):ITaskApi {
 
   const createTask = async (payload: CreateTaskDTO ) => {
     try {
-      const { status, statusText } = await http.get<null>(apiConstants.API_TASKS_URL);
+      const { data, status, statusText } = await http.get<null>(apiConstants.API_TASKS_URL);
 
       if(status !== 201){
         console.log(`error: ${status} - ${statusText}`)
         return null;
       }
 
-      return null;
+      return data;
 
     } catch (error) {
       if (isAxiosError(error)) {
