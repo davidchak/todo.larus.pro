@@ -8,7 +8,8 @@
 		"./apps/*"
 	],
 	"scripts": {
-		"dev": "./scripts/dev/all.sh"
+		"dev:client": "./scripts/dev/client.sh",
+		"dev:client-api": "./scripts/dev/client-api.sh"
 	},
 	"repository": "git+https://github.com/davidchak/todo.larus.pro.git",
 	"keywords": [],

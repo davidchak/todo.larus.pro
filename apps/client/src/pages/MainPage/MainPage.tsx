@@ -1,35 +1,33 @@
 import { useState } from "react";
-import { Await, useLoaderData } from "react-router-dom";
-import { Suspense } from "react";
-import { mainPageLoader } from "./index";
+// import { Await, useLoaderData } from "react-router-dom";
+// import { Suspense } from "react";
+// import { mainPageLoader } from "./index";
 import { H1 } from "shared/ui/H1";
 import { H3 } from "shared/ui/H3";
-import { UserEntity } from "entities/User";
-import { UserModelType } from "entities/User/types";
-import { UserModel } from "entities/User/models/User.model";
+import { ITaskModel, TaskModel } from "entities/Task/model";
+import { TaskEntity } from "entities/Task";
+
+
 
 const MainPage = () => {
-  const data = useLoaderData() as  typeof mainPageLoader;
-	const [user, setUser] = useState<UserModelType |null>(null)
+  // const data = useLoaderData() as  typeof mainPageLoader;
+	const [task, setTask] = useState<ITaskModel |null>(null)
 
 	const handleClick = async () => {
-		const newUser = await UserEntity.createUserAsync({
-			email: "admin@mail.ru",
-			password: "1234"
-		})
+		const newTask = await TaskEntity.add();
 
-		if (newUser instanceof UserModel){
-			setUser(newUser)
+		if (newTask instanceof TaskModel){
+			setTask(newTask)
 		}
 	}
 
   return (<div>
     <H1>Main Page</H1>
 		{
-			user && <H3>{ JSON.stringify(user, null, 2) }</H3>
+			task && <H3>{ JSON.stringify(task, null, 2) }</H3>
 		}
 		<button onClick={handleClick}>Проверка загрузки пользователя</button>
-		<Suspense fallback={<p>Loading...</p>}>
+		{/* <Suspense fallback={<p>Loading...</p>}>
       <Await
         resolve={ data }
         errorElement={
@@ -41,7 +39,7 @@ const MainPage = () => {
             }
           }
       </Await>
-    </Suspense>
+    </Suspense> */}
   </div>)
 }
 
