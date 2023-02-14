@@ -10,7 +10,11 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"chalk": "4"
+		"@typegoose/typegoose": "^10.1.1",
+		"chalk": "4",
+		"mongoose": "^6.9.1",
+		"pino-http": "^8.3.3",
+		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.20",
