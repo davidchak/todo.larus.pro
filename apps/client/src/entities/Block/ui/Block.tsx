@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import styles from "./Block.style.module.scss";
-import { H3 } from "shared/ui/H3";
 
 
 type BlockProps = {
@@ -23,7 +22,7 @@ export const Block:FC = (props: BlockProps) => {
 	return (<div className={styles["block"]}>
 		<div className={styles["block__header"]}>
 			<div className={styles["block__header-title"]}>
-				<H3>{title}</H3>
+				<h3>{title}</h3>
 			</div>
 		</div>
 		<div className={styles["block__body"]}>{}</div>

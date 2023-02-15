@@ -1,38 +1,25 @@
 Arguments: 
-<<<<<<< HEAD
-  /home/m0/.nvm/versions/node/v16.16.0/bin/node /home/m0/.nvm/versions/node/v16.16.0/bin/yarn workspaces run dev
-=======
-  /home/m0/.nvm/versions/node/v18.12.1/bin/node /home/m0/.nvm/versions/node/v18.12.1/bin/yarn dev:api
->>>>>>> 4f23d58 (update)
+  /home/m0/.nvm/versions/node/v18.12.1/bin/node /home/m0/.nvm/versions/node/v18.12.1/bin/yarn workspace @todo/client run dev
 
 PATH: 
-  /tmp/yarn--1676312112992-0.027092621190914823:/home/m0/Dev/todo.larus.pro/node_modules/.bin:/home/m0/.config/yarn/link/node_modules/.bin:/home/m0/Dev/todo.larus.pro/node_modules/.bin:/home/m0/.yarn/bin:/home/m0/.nvm/versions/node/v16.16.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v16.16.0/bin/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v16.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /tmp/yarn--1676466206638-0.1763582842857836:/home/m0/Dev/todo.larus.pro/node_modules/.bin:/home/m0/.config/yarn/link/node_modules/.bin:/home/m0/Dev/todo.larus.pro/node_modules/.bin:/home/m0/.yarn/bin:/home/m0/.nvm/versions/node/v18.12.1/libexec/lib/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v18.12.1/bin/node_modules/npm/bin/node-gyp-bin:/home/m0/.nvm/versions/node/v18.12.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/local/go/bin:/usr/local/go/bin
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  16.16.0
+  18.12.1
 
 Platform: 
   linux x64
 
 Trace: 
-<<<<<<< HEAD
-  SyntaxError: /home/m0/Dev/todo.larus.pro/apps/client/package.json: Unexpected token < in JSON at position 2
-      at JSON.parse (<anonymous>)
-      at /home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:1629:59
-      at Generator.next (<anonymous>)
-      at step (/home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:310:30)
-      at /home/m0/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:321:13
-=======
-  SyntaxError: /home/m0/Dev/todo.larus.pro/package.json: Unexpected token } in JSON at position 222
+  SyntaxError: /home/m0/Dev/todo.larus.pro/apps/client/package.json: Unexpected token < in JSON at position 1384
       at JSON.parse (<anonymous>)
       at /home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:1629:59
       at Generator.next (<anonymous>)
       at step (/home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:310:30)
       at /home/m0/.nvm/versions/node/v18.12.1/lib/node_modules/yarn/lib/cli.js:321:13
->>>>>>> 4f23d58 (update)
 
 npm manifest: 
   {
@@ -46,7 +33,7 @@ npm manifest:
   	],
   	"scripts": {
   		"dev:client": "./scripts/dev/client.sh",
-  		"dev:api": "./scripts/dev/api.sh",
+  		"dev:client-api": "./scripts/dev/client-api.sh"
   	},
   	"repository": "git+https://github.com/davidchak/todo.larus.pro.git",
   	"keywords": [],

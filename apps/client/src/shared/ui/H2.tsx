@@ -1,7 +1,0 @@
-import styled from "@emotion/styled";
-
-export const H2 = styled.h2`
-	font-size: 16px;
-	line-height: 20px;
-	font-weight: 600;
-`

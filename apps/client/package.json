@@ -16,12 +16,9 @@
 		"@types/react": "^18.0.20",
 		"@types/react-dom": "^18.0.6",
 		"axios": "^1.3.2",
-<<<<<<< HEAD
-=======
 		"class-transformer": "^0.5.1",
 		"class-validator": "^0.14.0",
 		"classnames": "^2.3.2",
->>>>>>> 4f23d58 (update)
 		"craco": "^0.0.3",
 		"lit": "^2.6.1",
 		"pubsub-js": "^1.9.4",
@@ -62,8 +59,4 @@
 		"@types/pubsub-js": "^1.8.3",
 		"@types/uuid": "^9.0.0"
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 4f23d58 (update)

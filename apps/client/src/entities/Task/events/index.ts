@@ -25,6 +25,7 @@ export const addTaskEventAsync: addTaskEventAsyncType = async () => {
 		});
 
 		PubSub.publish(TASK_ADD_TOPIC, created);
+		// нужно ли отправлять задачу обратно?!?
 		return resolve(created);
 	})
 }

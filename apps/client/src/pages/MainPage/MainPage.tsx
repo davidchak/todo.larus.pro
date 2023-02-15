@@ -2,19 +2,9 @@ import { useState } from "react";
 // import { Await, useLoaderData } from "react-router-dom";
 // import { Suspense } from "react";
 // import { mainPageLoader } from "./index";
-import { H1 } from "shared/ui/H1";
-import { H3 } from "shared/ui/H3";
-<<<<<<< HEAD
-import { ITaskModel, TaskModel } from "entities/Task/model";
-import { TaskEntity } from "entities/Task";
-
-
-=======
-import { UserEntity } from "entities/User";
-import { UserModelType } from "entities/User/types";
-import { UserModel } from "entities/User/models/User.model";
 import { Block } from "entities/Block/ui/Block";
->>>>>>> 57cacbb (update)
+import { TaskEntity } from "entities/Task";
+import { ITaskModel, TaskModel } from "entities/Task/model";
 
 const MainPage = () => {
   // const data = useLoaderData() as  typeof mainPageLoader;
@@ -29,9 +19,9 @@ const MainPage = () => {
 	}
 
   return (<div>
-    <H1>Main Page</H1>
+    <h1>Main Page</h1>
 		{
-			task && <H3>{ JSON.stringify(task, null, 2) }</H3>
+			task && <h3>{ JSON.stringify(task, null, 2) }</h3>
 		}
 		<button onClick={handleClick}>Проверка загрузки пользователя</button>
 
