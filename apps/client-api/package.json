@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@typegoose/typegoose": "^10.1.1",
 		"chalk": "4",
+		"http-status": "^1.6.2",
 		"mongoose": "^6.9.1",
 		"pino-http": "^8.3.3",
 		"reflect-metadata": "^0.1.13"
