@@ -6,7 +6,8 @@ import { useState } from "react";
 import { TaskEntity } from "entities/Task";
 import { ITaskModel, TaskModel } from "entities/Task/model";
 import { Button, theme } from "antd";
-import ReactJson from 'react-json-view';
+import ReactJson, { InteractionProps } from 'react-json-view';
+import { CodeEditor } from "widgets/blocks/CodeEditor";
 
 const { useToken } = theme;
 
@@ -23,11 +24,23 @@ const MainPage = () => {
 		}
 	}
 
-  return (<div>
+  return (<div style={{padding: "24px"}}>
     <h1>Main Page</h1>
 		<Button onClick={handleClick} type="primary" title="Загрузка пользовательских данных" size="middle">Кнопка 2</Button>
-		<hr />
-		<ReactJson src={task || {}} />
+		<br />
+		<br />
+		<CodeEditor doc={JSON.stringify(task, null, 2)} />
+		{/* <ReactJson 
+			src={task || {}} 
+			iconStyle="square" 
+			collapseStringsAfterLength={80} 
+			enableClipboard={false}
+			displayObjectSize={false}
+			displayDataTypes={false}
+			onEdit={handleEditJson}
+			collapsed={false}
+			style={{ border: "1px solid grey", borderRadius: "4px" }}
+		/> */}
 
 		{/* <Block /> */}
 		{/* <Suspense fallback={<p>Loading...</p>}>
@@ -43,6 +56,7 @@ const MainPage = () => {
           }
       </Await>
     </Suspense> */}
+
   </div>)
 }
 
