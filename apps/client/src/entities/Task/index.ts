@@ -1,12 +1,17 @@
-import { ITaskModel, TaskModel } from "./model";
+import { ITaskModel } from "./model";
 import { addTaskEventAsync } from "./events";
 
 
-export interface ITaskEntity {
+interface ITaskEntity {
 	// TODO: добавить payload
 	add: () => Promise<ITaskModel>
 }
 
 export const TaskEntity: ITaskEntity = {
 	add: addTaskEventAsync,
+}
+
+export type {
+	ITaskModel,
+	ITaskEntity
 }

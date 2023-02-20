@@ -7,7 +7,7 @@ import { TaskEntity } from "entities/Task";
 import { ITaskModel, TaskModel } from "entities/Task/model";
 import { Button, theme } from "antd";
 import ReactJson, { InteractionProps } from 'react-json-view';
-import { CodeEditor } from "widgets/blocks/CodeEditor";
+import { CodeEditor } from "widgets/CodeEditor";
 
 const { useToken } = theme;
 
