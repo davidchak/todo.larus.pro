@@ -12,7 +12,7 @@ export type addTaskEventAsyncType = () => Promise<ITaskModel>
  * @param payload 
  * @returns 
  */
-export const addTaskEventAsync: addTaskEventAsyncType = async () => {
+export const addTaskEventAsync: addTaskEventAsyncType = async (payload: Partial<ITaskModel>) => {
 	return new Promise((resolve) => {
 		const created = plainToInstance(TaskModel, {
 			id: v4(),
@@ -23,9 +23,6 @@ export const addTaskEventAsync: addTaskEventAsyncType = async () => {
 			updatedAt: null,
 			completedAt: null,
 		});
-
-		PubSub.publish(TASK_ADD_TOPIC, created);
-		// нужно ли отправлять задачу обратно?!?
 		return resolve(created);
 	})
 }

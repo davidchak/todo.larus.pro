@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { Await, useLoaderData } from "react-router-dom";
 // import { Suspense } from "react";
 // import { mainPageLoader } from "./index";
 // import { Block } from "entities/Block/ui/Block";
+// import { TaskEntity } from "entities/Task";
+
+// import { addNewTask } from "features/Task/addNewTask";
 import { TaskEntity } from "entities/Task";
 import { ITaskModel, TaskModel } from "entities/Task/model";
 import { Button, theme } from "antd";
-import ReactJson, { InteractionProps } from 'react-json-view';
 import { CodeEditor } from "widgets/CodeEditor";
+import { TaskEventBus } from "features/bus";
+import { IBusMessage } from "shared/bus";
+
 
 const { useToken } = theme;
 
@@ -17,12 +22,30 @@ const MainPage = () => {
 	const token = useToken();
 
 	const handleClick = async () => {
-		const newTask = await TaskEntity.add();
-
-		if (newTask instanceof TaskModel){
-			setTask(newTask)
-		}
+		const newTask = await TaskEntity.createAsync({
+			done: false,
+			title: "Test task",
+			description: "Test task description",
+			createdAt: new Date(),
+			completedAt: null,
+			updatedAt: null,
+		});
+		await TaskEventBus.emit(newTask);
 	}
+
+	useEffect(() => {
+		const unsubscribe = TaskEventBus.subscribe<ITaskModel>(
+			(topic, data) => {
+				console.log(`[${topic}]::${JSON.stringify(data)}`)
+				if(data){
+					setTask(data.payload);
+				}
+			}
+		)
+		return function(){
+			unsubscribe();
+		}
+	}, [])
 
   return (<div style={{padding: "24px"}}>
     <h1>Main Page</h1>

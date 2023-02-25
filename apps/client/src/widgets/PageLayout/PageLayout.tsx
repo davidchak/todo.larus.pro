@@ -28,15 +28,18 @@ function getMenuItem(
 
 // TODO: Сделать генератор меню из JSON(в сторе хронящися?)
 const items: MenuItemType[] = [
-  getMenuItem('Option 1', '1', <PieChartOutlined />),
-  getMenuItem('Option 2', '2', <DesktopOutlined />),
-  getMenuItem('User', 'sub1', <UserOutlined />, [
-    getMenuItem('Tom', '3'),
-    getMenuItem('Bill', '4'),
-    getMenuItem('Alex', '5'),
+  getMenuItem('Задачи и Проекты', '1', <PieChartOutlined />, [
+		getMenuItem('Задачи', '1-1'),
+		getMenuItem('Проекты', '1-2'),
+	]),
+  getMenuItem('Автоматизация', '2', <DesktopOutlined />, [
+		getMenuItem('Базнес-процессы', '2-1'),
+		getMenuItem('Боты', '2-2'),
+	]),
+  getMenuItem('Настройки', '3', <UserOutlined />, [
+    getMenuItem('Шаблоны задач', '3-1'),
+    getMenuItem('Настройки пользователя', '3-2'),
   ]),
-  getMenuItem('Team', 'sub2', <TeamOutlined />, [getMenuItem('Team 1', '6'), getMenuItem('Team 2', '8')]),
-  getMenuItem('Files', '9', <FileOutlined />),
 ];
 
 

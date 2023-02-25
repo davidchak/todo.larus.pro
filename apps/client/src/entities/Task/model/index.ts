@@ -1,8 +1,7 @@
-import { UUIDTokenType } from "types";
+import { BaseModelType } from "entities/types";
 
 
-export interface ITaskModel {
-	id: UUIDTokenType,
+export interface ITaskModel extends BaseModelType {
 	title: string,
 	description: string,
 	done: boolean,
@@ -13,6 +12,7 @@ export interface ITaskModel {
 
 export class TaskModel implements ITaskModel {
 	id!: string;
+	model_type!: string;
 	title!: string;
 	description!: string;
 	done!: boolean;
