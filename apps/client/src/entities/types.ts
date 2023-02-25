@@ -4,19 +4,18 @@
 export type UUIDTokenType = string;
 
 /**
- * Базовый класс для всех entity
+ * Базовый тип для всех entity
  */
-export type BaseModelType = {
+export type BaseModelSystemType = {
 	id: UUIDTokenType
-	model_type: string
+	type: string
 }
 
 /**
- * Базовый интерфейс создания entity 
+ * Базовый тип с датами создания/обновления/завершения 
  */
-export interface IEntity<T extends BaseModelType> {
-	getById: (payload: T["id"]) => T;  
-	createAsync: (payload: Partial<Omit<T, "id"|"model_type">>) => Promise<T>; 
-	updateAsync: (payload: Partial<Pick<T, "id"|"model_type">>) => Promise<T>; 
-	deleteAsync: (payload: T["id"]) => Promise<void>; 
+export type BaseModelDatetimeType = {
+	createdAt: Date,
+	updatedAt: Date | null,
+	completedAt?: Date | null
 }
