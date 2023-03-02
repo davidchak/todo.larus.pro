@@ -26,7 +26,7 @@ export type DeleteTaskDTO = Pick<ITaskModel, "id" >;
 export type UpdateTaskDTO = Partial<Omit<ITaskModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >>
 
 export interface ITaskState {
-	tasklist: ITaskModel[];
+	taskList: ITaskModel[];
 	// getById: (payload: ITaskModel["id"]) => ITaskModel|null;
 	createTaskAsync: (payload: CreateTaskDTO) => Promise<ITaskModel|Error>;
 	// deleteAsync: (payload: DeleteTaskDTO) => Promise<void>;
@@ -36,7 +36,7 @@ export interface ITaskState {
 export const useTaskStore = create<ITaskState>()(
 	persist(
 		(set, get) => ({
-			tasklist: [],
+			taskList: [],
 
 			createTaskAsync: async (payload: CreateTaskDTO) => {
 				// FIXME: Заменить на работу с api
@@ -49,7 +49,7 @@ export const useTaskStore = create<ITaskState>()(
 					...payload
 				})
 
-				set({ tasklist: [ ...get().tasklist, newTask] })
+				set({ taskList: [ ...get().taskList, newTask] })
 
 				return newTask;
 			}

@@ -8,7 +8,7 @@ import { persist } from "zustand/middleware";
 export interface IProjectModel extends BaseModelSystemType, BaseModelDatetimeType {
 	title: string,
 	description: string,
-	tasks: ITaskModel[],
+	taskIds: ITaskModel[],
 }
 
 export class ProjectModel implements IProjectModel {
@@ -16,7 +16,7 @@ export class ProjectModel implements IProjectModel {
 	type!: string;
 	title!: string;
 	description!: string;
-	tasks!: ITaskModel[];
+	taskIds!: ITaskModel[];
 	createdAt!: Date;
 	updatedAt!: Date | null;
 	completedAt!: Date | null;
@@ -39,7 +39,7 @@ export const useProjectStore = create<IProjectState>()(
 		(set, get) => ({
 			projects: [],
 
-			createProjectAsync: async ({ tasks=[], ...args }: CreateProjectDTO) => {
+			createProjectAsync: async ({ taskIds=[], ...args }: CreateProjectDTO) => {
 				// FIXME: Заменить на работу с api
 				const newProject = plainToInstance(ProjectModel, {
 					id: v4(),
@@ -47,7 +47,7 @@ export const useProjectStore = create<IProjectState>()(
 					createdAt: new Date(),
 					updatedAt: null,
 					completedAt: null,
-					tasks,
+					taskIds,
 					...args,
 				})
 
