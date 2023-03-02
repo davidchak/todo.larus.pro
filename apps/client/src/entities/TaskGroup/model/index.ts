@@ -1,5 +1,6 @@
 import { plainToInstance } from "class-transformer";
 import { ITaskModel } from "entities/Task/model";
+import { IUserModel } from "entities/User/model";
 import { BaseModelDatetimeType, BaseModelSystemType } from "entities/types";
 import { v4 } from "uuid";
 import { create } from "zustand";
@@ -8,6 +9,7 @@ import { persist } from "zustand/middleware";
 export interface ITaskGroupModel extends BaseModelSystemType, BaseModelDatetimeType {
 	name: string,
 	taskIds: ITaskModel[],
+	owner: IUserModel
 }
 
 export class TaskGroupModel implements ITaskGroupModel {
@@ -15,6 +17,7 @@ export class TaskGroupModel implements ITaskGroupModel {
 	type!: string;
 	name!: string;
 	taskIds!: ITaskModel[];
+	owner!: IUserModel;
 	createdAt!: Date;
 	updatedAt!: Date | null;
 	completedAt!: Date | null;

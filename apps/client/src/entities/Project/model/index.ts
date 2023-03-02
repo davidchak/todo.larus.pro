@@ -1,5 +1,6 @@
 import { plainToInstance } from "class-transformer";
 import { ITaskModel } from "entities/Task";
+import { IUserModel } from "entities/User/model";
 import { BaseModelSystemType, BaseModelDatetimeType } from "entities/types";
 import { v4 } from "uuid";
 import { create } from "zustand";
@@ -9,6 +10,7 @@ export interface IProjectModel extends BaseModelSystemType, BaseModelDatetimeTyp
 	title: string,
 	description: string,
 	taskIds: ITaskModel[],
+	owner: IUserModel,
 }
 
 export class ProjectModel implements IProjectModel {
@@ -17,6 +19,7 @@ export class ProjectModel implements IProjectModel {
 	title!: string;
 	description!: string;
 	taskIds!: ITaskModel[];
+	owner!: IUserModel;
 	createdAt!: Date;
 	updatedAt!: Date | null;
 	completedAt!: Date | null;
