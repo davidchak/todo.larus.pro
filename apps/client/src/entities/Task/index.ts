@@ -1,13 +1,16 @@
 import { useTaskStore, ITaskModel, ITaskState } from "./model";
 import { ITaskUiProps, TaskUi } from "./ui/Task.ui";
+import { TaskRowUi, ITaskRowUiProps } from "./ui/TaskRow"; 
 
 export {
 	useTaskStore,
-	TaskUi
+	TaskUi,
+	TaskRowUi
 }
 
 export type {
 	ITaskModel,
 	ITaskState,
-	ITaskUiProps
+	ITaskUiProps,
+	ITaskRowUiProps
 }
