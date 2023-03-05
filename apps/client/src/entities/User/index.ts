@@ -1,13 +1,10 @@
-import { useTaskStore, ITaskModel, ITaskState } from "./model";
-import { ITaskUiProps, TaskUi } from "./ui/Task.ui";
+import { useUserStore, IUserModel, CreateUserDTO } from "./model";
 
 export {
-	useTaskStore,
-	TaskUi
+	useUserStore
 }
 
 export type {
-	ITaskModel,
-	ITaskState,
-	ITaskUiProps
+	IUserModel,
+	CreateUserDTO
 }
