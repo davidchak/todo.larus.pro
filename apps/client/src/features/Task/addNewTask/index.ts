@@ -1,18 +1,22 @@
-import { ITaskModel, TaskEntity } from "entities/Task";
+import { useTaskStore } from "entities/Task";
+import { CreateTaskDTO } from "entities/Task";
+import { TaskEventBus } from "features/EventBus";
 
+export const addNewTaskAsync = async (payload: CreateTaskDTO) => {
+	const { createTaskAsync } = useTaskStore.getState();
 
-// export const addTask = async (task: ITaskModel) => {
-export const addNewTask = async () => {
 	try {
-		// TODO: валидировать входные параметры и передать их пропсами
-		const newTask = await TaskEntity.add();
-		// FIXME: Заменить вывод на вызов логгера(отправить в топик логгера)
-		console.log(`New TASK: ${JSON.stringify(newTask, null, 2)}`);
-		return newTask;
-	}	catch(err) {
-		// FIXME: Заменить вывод на вызов логгера(отправить в топик логгера)
-		console.log(err)
-		// FIXME: Прервать и вывести предупреждение
-		return null;
+		// TODO: отправить в api и результат вернуть в createTaskAsync		
+		const newTask = await createTaskAsync(payload)
+
+		// TODO: отправляем в history topic с инфой ос создании;
+		await TaskEventBus.emit(newTask);
+	} catch (err) {
+		// TODO: отправляем в лог с ошибками
+		if(err instanceof Error){
+			console.error(`Ошибка создания задачи: ${err.message}`);
+		}
+		console.error(err);
 	}
 }
+
