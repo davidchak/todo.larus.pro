@@ -9,7 +9,7 @@ export interface ITaskModel extends BaseModelSystemType, BaseModelDatetimeType {
 	title: string,
 	description: string,
 	done: boolean,
-	owner: IUserModel,
+	owner: IUserModel | null,
 }
 
 export class TaskModel implements ITaskModel {
@@ -18,7 +18,7 @@ export class TaskModel implements ITaskModel {
 	title!: string;
 	description!: string;
 	done!: boolean;
-	owner!: IUserModel;
+	owner!: IUserModel | null;
 	createdAt!: Date;
 	updatedAt!: Date | null;
 	completedAt!: Date | null;
