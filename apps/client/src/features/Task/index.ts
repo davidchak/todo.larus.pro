@@ -1,5 +1,5 @@
-import { addNewTask } from "./addNewTask";
+import { addNewTaskAsync } from "./addNewTask";
 
 export {
-	addNewTask
+	addNewTaskAsync
 }
