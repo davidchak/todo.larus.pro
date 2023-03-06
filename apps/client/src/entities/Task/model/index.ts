@@ -26,11 +26,12 @@ export class TaskModel implements ITaskModel {
 
 export type CreateTaskDTO = Omit<ITaskModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >;
 export type DeleteTaskDTO = Pick<ITaskModel, "id" >;
-export type UpdateTaskDTO = Partial<Omit<ITaskModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >>
+export type UpdateTaskDTO = Required<Pick<BaseModelSystemType, "id">> & Partial<Omit<ITaskModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >>
 
 export interface ITaskState {
 	taskList: ITaskModel[];
 	// getById: (payload: ITaskModel["id"]) => ITaskModel|null;
+	
 	createTaskAsync: (payload: CreateTaskDTO) => Promise<ITaskModel|Error>;
 	// deleteAsync: (payload: DeleteTaskDTO) => Promise<void>;
 	// updateAsync: (payload: UpdateTaskDTO) => Promise<ITaskModel>;

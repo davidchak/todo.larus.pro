@@ -7,7 +7,7 @@ export const addNewTaskAsync = async (payload: CreateTaskDTO) => {
 
 	try {
 		// TODO: отправить в api и результат вернуть в createTaskAsync		
-		const newTask = await createTaskAsync(payload)
+		const newTask = await createTaskAsync(payload) 
 
 		// TODO: отправляем в history topic с инфой ос создании;
 		await TaskEventBus.emit(newTask);
