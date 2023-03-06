@@ -1,6 +1,6 @@
 import { plainToInstance } from "class-transformer";
 import { IUserModel } from "entities/User/model";
-import { BaseModelSystemType, BaseModelDatetimeType } from "entities/types";
+import { BaseModelSystemType, BaseModelDatetimeType } from "shared/types/base.entity.types";
 import { v4 } from "uuid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -24,8 +24,11 @@ export class TaskModel implements ITaskModel {
 	completedAt!: Date | null;
 }
 
+// TODO: переписать dto на глобальные
 export type CreateTaskDTO = Omit<ITaskModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >;
-export type DeleteTaskDTO = Pick<ITaskModel, "id" >;
+// TODO: переписать dto на глобальные
+export type DeleteTaskDTO = Pick<ITaskModel & BaseModelSystemType, "id" >;
+// TODO: переписать dto на глобальные
 export type UpdateTaskDTO = Required<Pick<BaseModelSystemType, "id">> & Partial<Omit<ITaskModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >>
 
 export interface ITaskState {

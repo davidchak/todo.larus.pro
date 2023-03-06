@@ -1,4 +1,4 @@
-import { EntityModelBaseType } from "types";
+import { BaseModelSystemType } from "shared/types/base.entity.types"
 
 /**
  * Базовый dto создания нового объекта
@@ -17,6 +17,7 @@ export type UpdateDTO<T> = {
 /**
  * Базовый dto удаления существующего объекта
  */
-export type DeleteDTO<T extends EntityModelBaseType> = T["id"]
+// TODO: переделать или удалить
+export type DeleteDTO<T extends BaseModelSystemType> = T["id"]
 
 
