@@ -1,10 +1,12 @@
 import { useUserStore, IUserModel, CreateUserDTO } from "./model";
-
-export {
-	useUserStore
-}
+import { RootUserTopic } from "./bus"; 
 
 export type {
 	IUserModel,
 	CreateUserDTO
+}
+
+export {
+	useUserStore,
+	RootUserTopic
 }

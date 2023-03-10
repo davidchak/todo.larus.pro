@@ -1,13 +1,15 @@
 import { useProjectStore, ProjectModel, IProjectModel } from "./model";
 import { ProjectUi, IProjectUiProps } from "./ui/Project.ui";
-
-export {
-	useProjectStore,
-	ProjectModel,
-	ProjectUi
-}
+import { RootProjectTopic } from "./bus";
 
 export type {
 	IProjectModel,
 	IProjectUiProps
+}
+
+export {
+	useProjectStore,
+	ProjectModel,
+	ProjectUi,
+	RootProjectTopic
 }

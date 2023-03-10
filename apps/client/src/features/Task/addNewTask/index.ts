@@ -1,6 +1,4 @@
-import { useTaskStore } from "entities/Task";
-import { CreateTaskDTO } from "entities/Task";
-import { TaskEventBus } from "features/EventBus";
+import { useTaskStore, CreateTaskDTO, CreateTaskTopic} from "entities/Task";
 
 export const addNewTaskAsync = async (payload: CreateTaskDTO) => {
 	const { createTaskAsync } = useTaskStore.getState();
@@ -10,7 +8,7 @@ export const addNewTaskAsync = async (payload: CreateTaskDTO) => {
 		const newTask = await createTaskAsync(payload) 
 
 		// TODO: отправляем в history topic с инфой ос создании;
-		await TaskEventBus.emit(newTask);
+		await CreateTaskTopic.emit(newTask);
 	} catch (err) {
 		// TODO: отправляем в лог с ошибками
 		if(err instanceof Error){

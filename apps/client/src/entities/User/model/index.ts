@@ -1,5 +1,5 @@
 import { plainToInstance } from "class-transformer";
-import { BaseModelSystemType, BaseModelDatetimeType } from "entities/types";
+import { BaseModelSystemType, BaseModelDatetimeType } from "shared/types/base.entity.types"
 import { v4 } from "uuid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";

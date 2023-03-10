@@ -1,10 +1,12 @@
 import { useTaskGroupStore, ITaskGroupModel, ITaskGroupState } from "./model";
-
-export {
-	useTaskGroupStore
-}
+import { RootTaskGroupTopic } from "./bus"; 
 
 export type {
 	ITaskGroupModel,
 	ITaskGroupState
+}
+
+export {
+	useTaskGroupStore,
+	RootTaskGroupTopic
 }

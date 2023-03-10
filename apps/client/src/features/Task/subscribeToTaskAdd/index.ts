@@ -1,4 +1,4 @@
-import { TaskEventBus } from "features/EventBus";
+import { CreateTaskTopic } from "entities/Task";
 
 export type callbackType = (token: string, data?: any) => void;
 
@@ -8,6 +8,6 @@ export type callbackType = (token: string, data?: any) => void;
  * @returns 
  */
 export const subscribeToTaskAdd = (cb: callbackType) => {
-	const unsubscribe = TaskEventBus.subscribe(cb);
+	const unsubscribe = CreateTaskTopic.subscribe(cb);
 	return () => unsubscribe();
 }

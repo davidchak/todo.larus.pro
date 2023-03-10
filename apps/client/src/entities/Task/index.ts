@@ -1,12 +1,8 @@
 import { useTaskStore, ITaskModel, ITaskState, CreateTaskDTO } from "./model";
 import { ITaskUiProps, TaskUi } from "./ui/Task.ui";
 import { TaskRowUi, ITaskRowUiProps } from "./ui/TaskRow"; 
+import { RootTaskTopic, CreateTaskTopic, DeleteTaskTopic, UpdateTaskTopic } from "./bus";
 
-export {
-	useTaskStore,
-	TaskUi,
-	TaskRowUi,
-}
 
 export type {
 	ITaskModel,
@@ -14,4 +10,14 @@ export type {
 	ITaskUiProps,
 	ITaskRowUiProps,
 	CreateTaskDTO
+}
+
+export {
+	useTaskStore,
+	TaskUi,
+	TaskRowUi,
+	RootTaskTopic,
+	CreateTaskTopic,
+	UpdateTaskTopic,
+	DeleteTaskTopic
 }

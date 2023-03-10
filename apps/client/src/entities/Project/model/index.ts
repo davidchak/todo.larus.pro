@@ -1,7 +1,7 @@
 import { plainToInstance } from "class-transformer";
 import { ITaskModel } from "entities/Task";
 import { IUserModel } from "entities/User/model";
-import { BaseModelSystemType, BaseModelDatetimeType } from "entities/types";
+import { BaseModelSystemType, BaseModelDatetimeType } from "shared/types/base.entity.types";
 import { v4 } from "uuid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -26,7 +26,7 @@ export class ProjectModel implements IProjectModel {
 }
 
 export type CreateProjectDTO = Omit<IProjectModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >;
-export type DeleteProjectDTO = Pick<IProjectModel, "id" >;
+export type DeleteProjectDTO = Pick<IProjectModel & BaseModelSystemType, "id" >;
 export type UpdateProjectDTO = Partial<Omit<IProjectModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >>
 
 export interface IProjectState {

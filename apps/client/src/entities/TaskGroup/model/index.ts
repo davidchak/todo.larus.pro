@@ -1,7 +1,7 @@
 import { plainToInstance } from "class-transformer";
 import { ITaskModel } from "entities/Task/model";
 import { IUserModel } from "entities/User/model";
-import { BaseModelDatetimeType, BaseModelSystemType } from "entities/types";
+import { BaseModelDatetimeType, BaseModelSystemType } from "shared/types/base.entity.types";
 import { v4 } from "uuid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -24,7 +24,7 @@ export class TaskGroupModel implements ITaskGroupModel {
 }
 
 export type CreateTaskGroupDTO = Omit<ITaskGroupModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >;
-export type DeleteTaskGroupDTO = Pick<ITaskGroupModel, "id" >;
+export type DeleteTaskGroupDTO = Pick<ITaskGroupModel & BaseModelSystemType, "id" >;
 export type UpdateTaskGroupDTO = Partial<Omit<ITaskGroupModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >>
 
 export interface ITaskGroupState {
