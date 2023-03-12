@@ -9,11 +9,11 @@ export const PageLayout = () => {
 			<div style={{ height: "60px" }}>Header</div>
 		</Layout> */}
 		<Layout direction="row" style={{ height: "inherit" }}>
-			<Layout style={{ width: "240px", borderRight: "1px solid grey" }}>Left</Layout>
+			<Layout style={{ width: "240px" }}>Left</Layout>
 			<Layout className={styles['page-content']}>
 				<Outlet />
 			</Layout>
-			<Layout style={{width: "72px", borderLeft: "1px solid grey"}}>Tools</Layout>
+			<Layout style={{ width: "72px" }}>Tools</Layout>
 		</Layout>
 	</Layout>)
 }

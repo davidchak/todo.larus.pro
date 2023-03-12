@@ -5,28 +5,27 @@ import { Button } from "@consta/uikit/Button";
 import { FieldGroup } from "@consta/uikit/FieldGroup";
 import { TextField } from "@consta/uikit/TextField";
 import { IconAdd } from "@consta/uikit/IconAdd";
-import { IconFilter } from "@consta/uikit/IconFilter";
 import { IconSearch } from "@consta/uikit/IconSearch";
 import { IconSettings } from "@consta/uikit/IconSettings";
-import { addNewTaskAsync } from "features/Task";
 import { debounce } from "lodash";
+import { TaskStatusEnum } from "entities/Task"; 
 
-export interface IContentPageHeaderProps { 
+export interface ITaskPageHeaderProps { 
 	page: string
 }
 
-export const ContentPageHeader = ({ page }: IContentPageHeaderProps) => {
+export const TaskPageHeader = () => {
 	const [searchInput, setSearchInput ] = useState<string|null>(null);
 
 	// TODO: переписать на открытие модалки для создания задачи
 	const handleClick = async () => {
 		const ch = v4();
-		await addNewTaskAsync({
-			title: `Task title ${ch}`,
-			description: `Task description ${ch}`,
-			done: false,
-			owner: null
-		})
+		// await addNewTaskAsync({
+		// 	title: `Task title ${ch}`,
+		// 	description: `Task description ${ch}`,
+		// 	status: TaskStatusEnum.pending,
+		// 	owner: null
+		// })
 	}
 
 	// TODO: переименовать и изменить логику на установку фильтра списка задач после добавления фильтра к стору задач
@@ -42,21 +41,33 @@ export const ContentPageHeader = ({ page }: IContentPageHeaderProps) => {
 	} 
 
 	return (<Layout style={{ height: "64px", gap: "64px", paddingLeft: "10px", paddingRight: "10px", alignItems: "center" }} >
-		<div style={{ fontSize: "28px", fontWeight: "500" }}>{ page.toUpperCase() }</div>
+		<div style={{ fontSize: "28px", fontWeight: "500" }}>"ЗАДАЧИ"</div>
 		
 		<Layout style={{ gap: "32px" }} flex={1}>
 			<Button label="Создать" iconRight={IconAdd} size="m" onClick={ handleClick }/>
 			
 			<FieldGroup form="default" size="m">
 				{/* TODO: описать открытие модалки с фильтрами (группа/проект/ответственный/статус выполнения) */}
-				<Button label="Button" onlyIcon size="m" view="ghost" form="default" iconRight={IconFilter}/>
-				<TextField style={{ width: "450px" }} value={searchInput} onChange={onSearchInputChange} placeholder="Поиск" size="m" />
+				{/* <Button label="Button" onlyIcon size="m" view="ghost" form="default" iconRight={IconFilter} style={{
+					border: "2px solid rgba(247, 248, 249, .2)",
+					background: "rgba(247, 248, 249, .2)",
+					backdropFilter: "blur(20px)",
+				}}/> */}
+				<TextField style={{
+					width: "450px", 
+					// background: "rgba(247, 248, 249, .2)",
+					// backdropFilter: "blur(20px)",
+				}} value={searchInput} onChange={onSearchInputChange} placeholder="Поиск" size="m" />
 				{/* TODO: описать функционал установки */}
 				<Button style={{ minWidth: "100px" }} label="Button" onlyIcon size="m" view="primary" form="default" iconRight={IconSearch}/>
 			</FieldGroup> 
 		</Layout>
 		
 		{/* TODO: добавить финкционал открытия модалки/страницы настроек задач (шаблоны/поля для отображения...) */}
-		<Button label="Button" onlyIcon size="m" view="ghost" form="default" iconRight={IconSettings}/>
+		<Button label="Button" onlyIcon size="m" view="ghost" form="default" iconRight={IconSettings} style={{
+			background: "rgba(247, 248, 249, .2)",
+			border: "2px solid rgba(247, 248, 249, .2)",
+			backdropFilter: "blur(20px)",  
+		}}/>
 	</Layout>)
 }

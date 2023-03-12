@@ -1,10 +1,10 @@
 import { ITaskModel } from "../model";
 
-export interface ITaskUiProps {
+export interface ITaskRowProps {
 	task: ITaskModel,
 }
 
 // TODO: Реализовать html & css
-export const TaskUi = ({ task }: ITaskUiProps) => {
+export const TaskRow = ({ task }: ITaskRowProps) => {
 	return (<div>{ JSON.stringify(task, null, 2) }</div>)
 }

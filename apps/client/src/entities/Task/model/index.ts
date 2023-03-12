@@ -5,10 +5,16 @@ import { v4 } from "uuid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+export const enum TaskStatusEnum {
+	pending = "PENDING",
+	inWork = "IN_WORK",
+	done = "DONE"
+}
+
 export interface ITaskModel extends BaseModelSystemType, BaseModelDatetimeType {
 	title: string,
 	description: string,
-	done: boolean,
+	status: TaskStatusEnum,
 	owner: IUserModel | null,
 }
 
@@ -17,7 +23,7 @@ export class TaskModel implements ITaskModel {
 	type!: string;
 	title!: string;
 	description!: string;
-	done!: boolean;
+	status!: TaskStatusEnum;
 	owner!: IUserModel | null;
 	createdAt!: Date;
 	updatedAt!: Date | null;
@@ -31,21 +37,39 @@ export type DeleteTaskDTO = Pick<ITaskModel & BaseModelSystemType, "id" >;
 // TODO: переписать dto на глобальные
 export type UpdateTaskDTO = Required<Pick<BaseModelSystemType, "id">> & Partial<Omit<ITaskModel, keyof BaseModelSystemType | keyof BaseModelDatetimeType >>
 
+export type FilterTaskDTO = {
+	status: TaskStatusEnum & null
+}
+
 export interface ITaskState {
 	taskList: ITaskModel[];
-	// getById: (payload: ITaskModel["id"]) => ITaskModel|null;
+	taskFilters: null;
+	computed: {
+		filteredTaskList: ITaskModel[]; 
+	}
 	
-	createTaskAsync: (payload: CreateTaskDTO) => Promise<ITaskModel|Error>;
+	createTask: (payload: CreateTaskDTO) => ITaskModel;
 	// deleteAsync: (payload: DeleteTaskDTO) => Promise<void>;
 	// updateAsync: (payload: UpdateTaskDTO) => Promise<ITaskModel>;
+	setTaskFilter: (payload:FilterTaskDTO) => void;
 }
 
 export const useTaskStore = create<ITaskState>()(
 	persist(
 		(set, get) => ({
 			taskList: [],
+			taskFilters: null,
+			
+			// Filtered tasklist
+			computed: {
+				get filteredTaskList(){
+					const currentFilter = get().taskFilters;
+					return currentFilter ? get().taskList.filter(task => task.status === currentFilter) : get().taskList;
+				}
+			},
 
-			createTaskAsync: async (payload: CreateTaskDTO) => {
+
+			createTask: (payload: CreateTaskDTO) => {
 				// FIXME: Заменить на работу с api
 				const newTask = plainToInstance(TaskModel, {
 					id: v4(),
@@ -59,7 +83,10 @@ export const useTaskStore = create<ITaskState>()(
 				set({ taskList: [ ...get().taskList, newTask] })
 
 				return newTask;
-			}
+			},
+
+			// README: установка фильтра только по статусу, при необходимости расширить
+			setTaskFilter: (payload: FilterTaskDTO) => set({ taskFilters: payload.status })
 		}),
 		{
 			name: "task_store"
