@@ -1,10 +1,18 @@
-import { addTaskAsync, getTaskList } from "./services";
+import { addTaskAsync, getTaskList, deleteTaskAsync, subscribeToTaskList } from "./services";
+import { ITaskModel } from "./model";
+import { RootTaskTopic } from "./bus";
+import { TaskRow } from "./ui/TaskRow.ui"; 
 
 
-// export type {
-// }
+export type {
+	ITaskModel
+}
 
 export {
 	getTaskList,
-	addTaskAsync
+	addTaskAsync,
+	deleteTaskAsync,
+	subscribeToTaskList,
+	RootTaskTopic,
+	TaskRow
 }

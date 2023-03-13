@@ -1,5 +1,5 @@
 import { Layout } from "@consta/uikit/Layout";
-import { TaskRowUi } from "entities/Task";
+import { TaskRow } from "entities/Task";
 import { useTaskListWithFilters } from "./useTaskListWithFilters.hook";
 
 // TODO: Заменить на таблицу
@@ -16,6 +16,6 @@ export const TaskList = () => {
 			height: "inherit", 
 			flex: "1 0" 
 		}}>
-		{ taskList.map(task => <TaskRowUi key={ task.id } task={ task } />) }
+		{ taskList.map(task => <TaskRow key={ task.id } task={ task } />) }
 	</Layout>)
 }

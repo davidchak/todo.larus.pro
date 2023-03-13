@@ -44,12 +44,12 @@ export type FilterTaskDTO = {
 export interface ITaskState {
 	taskList: ITaskModel[];
 	taskFilters: null;
-	computed: {
-		filteredTaskList: ITaskModel[]; 
-	}
+	// computed: {
+	// 	filteredTaskList: ITaskModel[]; 
+	// }
 	
 	createTask: (payload: CreateTaskDTO) => ITaskModel;
-	// deleteAsync: (payload: DeleteTaskDTO) => Promise<void>;
+	deleteTask: (payload: DeleteTaskDTO) => void;
 	// updateAsync: (payload: UpdateTaskDTO) => Promise<ITaskModel>;
 	setTaskFilter: (payload:FilterTaskDTO) => void;
 }
@@ -61,19 +61,12 @@ export const useTaskStore = create<ITaskState>()(
 			taskFilters: null,
 			
 			// Filtered tasklist
-			computed: {
-				get filteredTaskList(){
-					const currentFilter = get().taskFilters;
-					return currentFilter ? get().taskList.filter(task => task.status === currentFilter) : get().taskList;
-				}
-// const updateTaskAsync = async (payload) => {
-// 	console.log(payload);
-// }
-// const deleteTaskAsync = async (payload) => {
-// 	console.log(payload);
-// }
-
-			},
+			// computed: {
+			// 	get filteredTaskList(){
+			// 		const currentFilter = get().taskFilters;
+			// 		return currentFilter ? get().taskList.filter(task => task.status === currentFilter) : get().taskList;
+			// 	}
+			// },
 
 
 			createTask: (payload: CreateTaskDTO) => {
@@ -92,6 +85,10 @@ export const useTaskStore = create<ITaskState>()(
 				return newTask;
 			},
 
+			deleteTask: (payload: DeleteTaskDTO) => {
+				set({ taskList: get().taskList.filter(task => task.id !== payload.id) })
+			}, 
+
 			// README: установка фильтра только по статусу, при необходимости расширить
 			setTaskFilter: (payload: FilterTaskDTO) => set({ taskFilters: payload.status })
 		}),
@@ -100,3 +97,4 @@ export const useTaskStore = create<ITaskState>()(
 		}
 	)
 )
+

@@ -1,15 +1,20 @@
 // README: Интерфейс для управления всем приложением
 // Написать отдельный API для управления через cli
-// import * as Task from "features/Task";
+import { addTaskAsync, getTaskList, deleteTaskAsync, subscribeToTaskList } from "entities/Task";
 
-// const features = {
-// 	Task,
-// }
+const features = {
+	Task: {
+		getTaskList,
+		addTaskAsync,
+		deleteTaskAsync,
+		subscribeToTaskList
+	}
+}
 
-// declare global {
-// 	interface Window {
-// 		api: any;
-// 	}
-// }
+declare global {
+	interface Window {
+		api: any;
+	}
+}
 
-// window.api = features || {};
+window.api = features || {};

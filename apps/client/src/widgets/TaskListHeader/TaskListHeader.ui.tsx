@@ -8,7 +8,7 @@ import { IconAdd } from "@consta/uikit/IconAdd";
 import { IconSearch } from "@consta/uikit/IconSearch";
 import { IconSettings } from "@consta/uikit/IconSettings";
 import { debounce } from "lodash";
-import { TaskStatusEnum } from "entities/Task"; 
+import { addTaskAsync } from "entities/Task"; 
 
 export interface ITaskListHeaderProps { 
 	page: string
@@ -16,17 +16,6 @@ export interface ITaskListHeaderProps {
 
 export const TaskListHeader = () => {
 	const [searchInput, setSearchInput ] = useState<string|null>(null);
-
-	// TODO: переписать на открытие модалки для создания задачи
-	const handleClick = async () => {
-		const ch = v4();
-		// await addNewTaskAsync({
-		// 	title: `Task title ${ch}`,
-		// 	description: `Task description ${ch}`,
-		// 	status: TaskStatusEnum.pending,
-		// 	owner: null
-		// })
-	}
 
 	// TODO: переименовать и изменить логику на установку фильтра списка задач после добавления фильтра к стору задач
 	const handleDebounceFn = (input: string|null) => {
@@ -44,7 +33,7 @@ export const TaskListHeader = () => {
 		<div style={{ fontSize: "28px", fontWeight: "500" }}>"ЗАДАЧИ"</div>
 		
 		<Layout style={{ gap: "32px" }} flex={1}>
-			<Button label="Создать" iconRight={IconAdd} size="m" onClick={ handleClick }/>
+			<Button label="Создать" iconRight={IconAdd} size="m" onClick={ addTaskAsync }/>
 			
 			<FieldGroup form="default" size="m">
 				{/* TODO: описать открытие модалки с фильтрами (группа/проект/ответственный/статус выполнения) */}
