@@ -1,25 +1,10 @@
-import { useTaskStore, ITaskModel, ITaskState, CreateTaskDTO, TaskStatusEnum, FilterTaskDTO } from "./model";
-import { TaskCard, ITaskCardProps } from "./ui/TaskCard.ui";
-import { TaskRow, ITaskRowProps } from "./ui/TaskRow.ui"; 
-import { RootTaskTopic, CreateTaskTopic, DeleteTaskTopic, UpdateTaskTopic } from "./bus";
+import { addTaskAsync, getTaskList } from "./services";
 
 
-export type {
-	ITaskModel,
-	ITaskState,
-	ITaskUiProps,
-	ITaskRowUiProps,
-	CreateTaskDTO,
-	FilterTaskDTO
-}
+// export type {
+// }
 
 export {
-	useTaskStore,
-	TaskUi,
-	TaskRowUi,
-	RootTaskTopic,
-	CreateTaskTopic,
-	UpdateTaskTopic,
-	DeleteTaskTopic,
-	TaskStatusEnum
+	getTaskList,
+	addTaskAsync
 }

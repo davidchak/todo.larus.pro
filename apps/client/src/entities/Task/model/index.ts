@@ -66,6 +66,13 @@ export const useTaskStore = create<ITaskState>()(
 					const currentFilter = get().taskFilters;
 					return currentFilter ? get().taskList.filter(task => task.status === currentFilter) : get().taskList;
 				}
+// const updateTaskAsync = async (payload) => {
+// 	console.log(payload);
+// }
+// const deleteTaskAsync = async (payload) => {
+// 	console.log(payload);
+// }
+
 			},
 
 

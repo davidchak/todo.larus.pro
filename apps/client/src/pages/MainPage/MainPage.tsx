@@ -1,7 +1,7 @@
-import { TaskPageHeader } from "features/Task/TaskPageHeader";
+import { TaskListHeader } from "widgets/TaskListHeader";
 import { Layout } from "@consta/uikit/Layout";
-import { TaskToolBar } from "widgets/TaskToolBar";
-import { TaskList } from "widgets/TaskList";
+import { TaskListToolBar } from "widgets/TaskListToolBar";
+import { TaskList } from "features/TaskList";
 
 
 const MainPage = () => {
@@ -9,9 +9,9 @@ const MainPage = () => {
 
   return (
 	<Layout direction="column" style={{ gap: "8px", width: "inherit", height: "inherit" }}>
-		<TaskPageHeader page="Задачи" />
+		<TaskListHeader />
 		<hr style={{ width: "100%" }} />
-		<TaskToolBar />
+		<TaskListToolBar />
 		<TaskList />
 	</Layout>)
 }

@@ -10,11 +10,11 @@ import { IconSettings } from "@consta/uikit/IconSettings";
 import { debounce } from "lodash";
 import { TaskStatusEnum } from "entities/Task"; 
 
-export interface ITaskPageHeaderProps { 
+export interface ITaskListHeaderProps { 
 	page: string
 }
 
-export const TaskPageHeader = () => {
+export const TaskListHeader = () => {
 	const [searchInput, setSearchInput ] = useState<string|null>(null);
 
 	// TODO: переписать на открытие модалки для создания задачи
