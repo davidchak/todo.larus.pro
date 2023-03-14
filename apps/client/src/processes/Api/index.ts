@@ -1,13 +1,14 @@
 // README: Интерфейс для управления всем приложением
 // Написать отдельный API для управления через cli
-import { addTaskAsync, getTaskList, deleteTaskAsync, subscribeToTaskList } from "entities/Task";
+import { addTaskAsync, getTaskList, deleteTaskAsync, subscribeToTaskList, setTaskFilter } from "entities/Task";
 
 const features = {
 	Task: {
 		getTaskList,
 		addTaskAsync,
 		deleteTaskAsync,
-		subscribeToTaskList
+		subscribeToTaskList,
+		setTaskFilter
 	}
 }
 

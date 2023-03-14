@@ -1,31 +1,45 @@
 import { v4 } from "uuid";
 import {  ITaskModel, TaskStatusEnum, useTaskStore } from "../model";
+import { TaskCreateTopic, TaskDeleteTopic } from "../bus";
+import { filteredTaskList } from "../model/selectors";
 
-const addTaskAsync = async () => {
+export const addTaskAsync = async () => {
 	const { createTask } = useTaskStore.getState();
 	
 	const ch = v4();
-
-	createTask({
+	const newTask = createTask({
 		title: `Task title ${ch}`,
 		description: `Task description ${ch}`,
 		status: TaskStatusEnum.pending,
 		owner: null
 	})
+	TaskCreateTopic.emit(newTask);
 };
 
-const deleteTaskAsync = async ({id}: {id: string}) => {
+export const deleteTaskAsync = async ({id}: {id: string}) => {
 	const { deleteTask } = useTaskStore.getState();
 	
+	// TODO: Вернуть true/false при удалении
 	deleteTask({id});
+	
+	
+	// TODO: Проверить что задача удалилась
+	TaskDeleteTopic.emit({id});
 }
 
 /**
  * Возвращает текущий список задач, не реактивно!
  * @returns ITaskModel[]
  */
-const getTaskList = () => {
+export const getTaskList = () => {
 	return useTaskStore.getState().taskList;
+}
+
+
+export const setTaskFilter = (payload: { status: TaskStatusEnum | null }) => {
+	useTaskStore.setState({
+		taskFilters: payload.status
+	})
 }
 
 /**
@@ -34,22 +48,15 @@ const getTaskList = () => {
  * @param cb - колбэк
  * @returns unsubscribe function 
  */
-const subscribeToTaskList = (cb: (data: ITaskModel[]) => void) => {
+export const subscribeToTaskList = (cb: (data: ITaskModel[]) => void) => {
 	let current = useTaskStore.getState().taskList;
 
 	// Вызываем сразу чтобы получить текущие значения, а не ждать обновления
 	cb(current);
 
 	const unsubscribe = useTaskStore.subscribe((state) => {
-		cb(state.taskList);
+		cb(filteredTaskList(state));
 	}) 
 
 	return unsubscribe;
-}
-
-export {
-	getTaskList,
-	addTaskAsync,
-	deleteTaskAsync,
-	subscribeToTaskList
 }

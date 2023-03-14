@@ -1,18 +1,16 @@
-import { TaskListHeader } from "widgets/TaskListHeader";
+import { TaskPageHeader } from "widgets/TaskPageHeader";
 import { Layout } from "@consta/uikit/Layout";
-import { TaskListToolBar } from "widgets/TaskListToolBar";
-import { TaskList } from "features/TaskList";
+import { TaskPageContent } from "widgets/TaskPageContent";
 
 
 const MainPage = () => {
   // const data = useLoaderData() as  typeof mainPageLoader;
 
   return (
-	<Layout direction="column" style={{ gap: "8px", width: "inherit", height: "inherit" }}>
-		<TaskListHeader />
+	<Layout direction="column" style={{ gap: "8px", width: "inherit", height: "inherit", display: "flex" }}>
+		<TaskPageHeader />
 		<hr style={{ width: "100%" }} />
-		<TaskListToolBar />
-		<TaskList />
+		<TaskPageContent />
 	</Layout>)
 }
 

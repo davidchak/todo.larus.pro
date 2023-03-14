@@ -29,7 +29,7 @@ export class Bus {
 		return () => this._instance.unsubscribe(unsubscribeToken);
 	}
 
-	public async emit<T>(payload: T){
+	public emit<T>(payload: T){
 		const message: IBusMessage<T> = {
 			uid: v4(),
 			timestamp: new Date().toUTCString(),

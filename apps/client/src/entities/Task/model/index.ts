@@ -43,7 +43,7 @@ export type FilterTaskDTO = {
 
 export interface ITaskState {
 	taskList: ITaskModel[];
-	taskFilters: null;
+	taskFilters: any;
 	// computed: {
 	// 	filteredTaskList: ITaskModel[]; 
 	// }

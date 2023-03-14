@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { v4 } from "uuid";
 import { Layout } from "@consta/uikit/Layout";
 import { Button } from "@consta/uikit/Button";
 import { FieldGroup } from "@consta/uikit/FieldGroup";
@@ -10,11 +9,11 @@ import { IconSettings } from "@consta/uikit/IconSettings";
 import { debounce } from "lodash";
 import { addTaskAsync } from "entities/Task"; 
 
-export interface ITaskListHeaderProps { 
+export interface ITaskPageHeaderProps { 
 	page: string
 }
 
-export const TaskListHeader = () => {
+export const TaskPageHeader = () => {
 	const [searchInput, setSearchInput ] = useState<string|null>(null);
 
 	// TODO: переименовать и изменить логику на установку фильтра списка задач после добавления фильтра к стору задач
