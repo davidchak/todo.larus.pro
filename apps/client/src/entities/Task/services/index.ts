@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
-import {  ITaskModel, TaskStatusEnum, useTaskStore } from "../model";
+import {  ITaskListFilter, ITaskModel, TaskStatusEnum, useTaskStore } from "../model";
 import { TaskCreateTopic, TaskDeleteTopic } from "../bus";
-import { filteredTaskList } from "../model/selectors";
+import { filteredTaskList, taskListFilters } from "../model/selectors";
 
 export const addTaskAsync = async () => {
 	const { createTask } = useTaskStore.getState();
@@ -56,6 +56,18 @@ export const subscribeToTaskList = (cb: (data: ITaskModel[]) => void) => {
 
 	const unsubscribe = useTaskStore.subscribe((state) => {
 		cb(filteredTaskList(state));
+	}) 
+
+	return unsubscribe;
+}
+
+export const subscribeToTaskListChange = (cb: (data: ITaskListFilter["status"]) => void) => {
+	let current = useTaskStore.getState().taskFilters;
+	
+	cb(current as ITaskListFilter["status"]);
+
+	const unsubscribe = useTaskStore.subscribe((state) => {
+		cb(taskListFilters(state) as ITaskListFilter["status"]);
 	}) 
 
 	return unsubscribe;

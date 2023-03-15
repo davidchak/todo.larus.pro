@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup';
-import { setTaskFilter, TaskStatusEnum } from "entities/Task";
+import { setTaskFilter, TaskStatusEnum, subscribeToTaskListChange } from "entities/Task";
+import { ITaskListFilter } from 'entities/Task/model';
 
 type FilterItemType = {
 	label: string,
@@ -16,6 +17,15 @@ const filterItems: FilterItemType[] = [
 
 export const TaskListFilter = () => {
 	const [value, setValue] = useState<FilterItemType | null>(filterItems[0]);
+
+	useEffect(() => {
+		const unsubscribe = subscribeToTaskListChange((data: ITaskListFilter["status"]) => {
+			const newFilterValue = filterItems.find(item => item.filter === data);
+			setValue(newFilterValue ? newFilterValue : filterItems[0])
+		})
+
+		return unsubscribe;
+	}, [])
 
 	const onValueChange = ({ value }: { value: FilterItemType }) => {
 		setValue(value);

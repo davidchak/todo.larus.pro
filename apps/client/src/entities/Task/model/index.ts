@@ -41,8 +41,13 @@ export type FilterTaskDTO = {
 	status: TaskStatusEnum & null
 }
 
+export interface ITaskListFilter {
+	status: TaskStatusEnum & null,
+}
+
 export interface ITaskState {
 	taskList: ITaskModel[];
+	// TODO: Переписать тип на { status: value } или вынести
 	taskFilters: any;
 	// computed: {
 	// 	filteredTaskList: ITaskModel[]; 

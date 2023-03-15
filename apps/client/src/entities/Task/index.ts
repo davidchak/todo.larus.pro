@@ -1,4 +1,4 @@
-import { addTaskAsync, getTaskList, deleteTaskAsync, subscribeToTaskList, setTaskFilter } from "./services";
+import { addTaskAsync, getTaskList, deleteTaskAsync, subscribeToTaskList, setTaskFilter, subscribeToTaskListChange } from "./services";
 import { ITaskModel, TaskStatusEnum } from "./model";
 import { TaskRootTopic } from "./bus";
 import { TaskRow } from "./ui/TaskRow.ui"; 
@@ -13,8 +13,9 @@ export {
 	addTaskAsync,
 	deleteTaskAsync,
 	subscribeToTaskList,
+	subscribeToTaskListChange,
 	setTaskFilter,
-	TaskRootTopic,
 	TaskRow,
+	TaskRootTopic,
 	TaskStatusEnum
 }
