@@ -1,5 +1,5 @@
 import { addTaskAsync, getTaskList, deleteTaskAsync, subscribeToTaskList, setTaskFilter } from "./services";
-import { ITaskModel } from "./model";
+import { ITaskModel, TaskStatusEnum } from "./model";
 import { TaskRootTopic } from "./bus";
 import { TaskRow } from "./ui/TaskRow.ui"; 
 
@@ -15,5 +15,6 @@ export {
 	subscribeToTaskList,
 	setTaskFilter,
 	TaskRootTopic,
-	TaskRow
+	TaskRow,
+	TaskStatusEnum
 }

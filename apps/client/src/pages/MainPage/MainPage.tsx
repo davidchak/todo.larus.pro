@@ -2,7 +2,6 @@ import { TaskPageHeader } from "widgets/TaskPageHeader";
 import { Layout } from "@consta/uikit/Layout";
 import { TaskPageContent } from "widgets/TaskPageContent";
 
-
 const MainPage = () => {
   // const data = useLoaderData() as  typeof mainPageLoader;
 
