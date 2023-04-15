@@ -7,7 +7,7 @@ import { IconAdd } from "@consta/uikit/IconAdd";
 import { IconSearch } from "@consta/uikit/IconSearch";
 import { IconSettings } from "@consta/uikit/IconSettings";
 import { debounce } from "lodash";
-import { addTaskAsync } from "entities/Task"; 
+// import { addTaskAsync } from "entities/Task"; 
 
 export interface ITaskPageHeaderProps { 
 	page: string

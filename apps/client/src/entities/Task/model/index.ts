@@ -2,8 +2,6 @@ import { plainToInstance } from "class-transformer";
 import { IUserModel } from "entities/User/model";
 import { BaseModelSystemType, BaseModelDatetimeType } from "shared/types/base.entity.types";
 import { v4 } from "uuid";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 export const enum TaskStatusEnum {
 	pending = "PENDING",
@@ -44,62 +42,3 @@ export type FilterTaskDTO = {
 export interface ITaskListFilter {
 	status: TaskStatusEnum & null,
 }
-
-export interface ITaskState {
-	taskList: ITaskModel[];
-	// TODO: Переписать тип на { status: value } или вынести
-	taskFilters: any;
-	// computed: {
-	// 	filteredTaskList: ITaskModel[]; 
-	// }
-	
-	createTask: (payload: CreateTaskDTO) => ITaskModel;
-	deleteTask: (payload: DeleteTaskDTO) => void;
-	// updateAsync: (payload: UpdateTaskDTO) => Promise<ITaskModel>;
-	setTaskFilter: (payload:FilterTaskDTO) => void;
-}
-
-export const useTaskStore = create<ITaskState>()(
-	persist(
-		(set, get) => ({
-			taskList: [],
-			taskFilters: null,
-			
-			// Filtered tasklist
-			// computed: {
-			// 	get filteredTaskList(){
-			// 		const currentFilter = get().taskFilters;
-			// 		return currentFilter ? get().taskList.filter(task => task.status === currentFilter) : get().taskList;
-			// 	}
-			// },
-
-
-			createTask: (payload: CreateTaskDTO) => {
-				// FIXME: Заменить на работу с api
-				const newTask = plainToInstance(TaskModel, {
-					id: v4(),
-					type: "TaskModel",
-					createdAt: new Date(),
-					updatedAt: null,
-					completedAt: null,
-					...payload
-				})
-
-				set({ taskList: [ ...get().taskList, newTask] })
-
-				return newTask;
-			},
-
-			deleteTask: (payload: DeleteTaskDTO) => {
-				set({ taskList: get().taskList.filter(task => task.id !== payload.id) })
-			}, 
-
-			// README: установка фильтра только по статусу, при необходимости расширить
-			setTaskFilter: (payload: FilterTaskDTO) => set({ taskFilters: payload.status })
-		}),
-		{
-			name: "task_store"
-		}
-	)
-)
-

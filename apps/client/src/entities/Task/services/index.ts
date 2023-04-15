@@ -1,74 +1,64 @@
 import { v4 } from "uuid";
-import {  ITaskListFilter, ITaskModel, TaskStatusEnum, useTaskStore } from "../model";
+import { ITaskModel, TaskModel, TaskStatusEnum } from "../model";
+import { taskStore } from "../store";
 import { TaskCreateTopic, TaskDeleteTopic } from "../bus";
-import { filteredTaskList, taskListFilters } from "../model/selectors";
+import { plainToInstance } from "class-transformer";
 
-export const addTaskAsync = async () => {
-	const { createTask } = useTaskStore.getState();
+export const TaskActions = () => {
+
+	const createTaskAsync = async () => {
+		const prevState = taskStore.getState().tasklist;
+
+		const ch = v4();
+		const newTask = plainToInstance(TaskModel, {
+			title: `Task title ${ch}`,
+			description: `Task description ${ch}`,
+			status: TaskStatusEnum.pending,
+			owner: null
+		})
+		
+		taskStore.setState({
+			tasklist: [...prevState, newTask]
+		})
 	
-	const ch = v4();
-	const newTask = createTask({
-		title: `Task title ${ch}`,
-		description: `Task description ${ch}`,
-		status: TaskStatusEnum.pending,
-		owner: null
-	})
-	TaskCreateTopic.emit(newTask);
-};
+		TaskCreateTopic.emit(newTask);
 
-export const deleteTaskAsync = async ({id}: {id: string}) => {
-	const { deleteTask } = useTaskStore.getState();
-	
-	// TODO: Вернуть true/false при удалении
-	deleteTask({id});
-	
-	
-	// TODO: Проверить что задача удалилась
-	TaskDeleteTopic.emit({id});
-}
-
-/**
- * Возвращает текущий список задач, не реактивно!
- * @returns ITaskModel[]
- */
-export const getTaskList = () => {
-	return useTaskStore.getState().taskList;
-}
+		return Promise.resolve(newTask);
+	};
 
 
-export const setTaskFilter = (payload: { status: TaskStatusEnum | null }) => {
-	useTaskStore.setState({
-		taskFilters: payload.status
-	})
-}
+	const deleteTaskAsync = async ({ id }: Pick<ITaskModel, "id">) => {
+		const prevState = taskStore.getState().tasklist;
+		
+		taskStore.setState({
+			tasklist: prevState.filter(task => task.id !== id)
+		})
 
-/**
- * Подписка на обновление списка задач.
- * Возвращает текущий список сразу и последующие обновления.
- * @param cb - колбэк
- * @returns unsubscribe function 
- */
-export const subscribeToTaskList = (cb: (data: ITaskModel[]) => void) => {
-	let current = useTaskStore.getState().taskList;
+		// TODO: Проверить что задача удалилась
+		TaskDeleteTopic.emit({ id })
 
-	// Вызываем сразу чтобы получить текущие значения, а не ждать обновления
-	cb(current);
+		return Promise.resolve(true);
+	}
 
-	const unsubscribe = useTaskStore.subscribe((state) => {
-		cb(filteredTaskList(state));
-	}) 
+	// TODO: Дописать функционал
+	// const updateTaskAsync 
 
-	return unsubscribe;
-}
+	const setTaskFilterAsync = (payload: { status: ITaskModel["status"] | null }) => {
+		taskStore.setState({
+			taskFilters: { 
+				byStatus: payload.status
+			}
+		})
 
-export const subscribeToTaskListChange = (cb: (data: ITaskListFilter["status"]) => void) => {
-	let current = useTaskStore.getState().taskFilters;
-	
-	cb(current as ITaskListFilter["status"]);
+		// TODO: Выпихнуть событие в шину
 
-	const unsubscribe = useTaskStore.subscribe((state) => {
-		cb(taskListFilters(state) as ITaskListFilter["status"]);
-	}) 
+		return Promise.resolve(true);
+	}
 
-	return unsubscribe;
+	return {
+		createTaskAsync,
+		deleteTaskAsync,
+		setTaskFilterAsync
+	}
+
 }
