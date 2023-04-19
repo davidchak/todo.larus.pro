@@ -7,11 +7,13 @@ import { IconAdd } from "@consta/uikit/IconAdd";
 import { IconSearch } from "@consta/uikit/IconSearch";
 import { IconSettings } from "@consta/uikit/IconSettings";
 import { debounce } from "lodash";
-// import { addTaskAsync } from "entities/Task"; 
+import { taskActions } from "entities/Task"; 
 
 export interface ITaskPageHeaderProps { 
 	page: string
 }
+
+const { createTaskAsync } = taskActions;
 
 export const TaskPageHeader = () => {
 	const [searchInput, setSearchInput ] = useState<string|null>(null);
@@ -32,7 +34,7 @@ export const TaskPageHeader = () => {
 		<div style={{ fontSize: "28px", fontWeight: "500" }}>"ЗАДАЧИ"</div>
 		
 		<Layout style={{ gap: "32px" }} flex={1}>
-			<Button label="Создать" iconRight={IconAdd} size="m" onClick={ addTaskAsync }/>
+			<Button label="Создать" iconRight={IconAdd} size="m" onClick={ createTaskAsync }/>
 			
 			<FieldGroup form="default" size="m">
 				{/* TODO: описать открытие модалки с фильтрами (группа/проект/ответственный/статус выполнения) */}

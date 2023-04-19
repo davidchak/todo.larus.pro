@@ -1,19 +1,12 @@
-import { plainToInstance } from "class-transformer";
-import { IUserModel } from "entities/User/model";
-import { BaseModelSystemType, BaseModelDatetimeType } from "shared/types/base.entity.types";
-import { v4 } from "uuid";
+import { BaseModelSystemType, BaseModelDatetimeType } from "shared/types/baseEntity";
+import { TaskStatusEnum } from "shared/types/task";
 
-export const enum TaskStatusEnum {
-	pending = "PENDING",
-	inWork = "IN_WORK",
-	done = "DONE"
-}
 
 export interface ITaskModel extends BaseModelSystemType, BaseModelDatetimeType {
 	title: string,
 	description: string,
 	status: TaskStatusEnum,
-	owner: IUserModel | null,
+	// owner: IUserModel | null,
 }
 
 export class TaskModel implements ITaskModel {
@@ -22,7 +15,7 @@ export class TaskModel implements ITaskModel {
 	title!: string;
 	description!: string;
 	status!: TaskStatusEnum;
-	owner!: IUserModel | null;
+	// owner!: IUserModel | null;
 	createdAt!: Date;
 	updatedAt!: Date | null;
 	completedAt!: Date | null;

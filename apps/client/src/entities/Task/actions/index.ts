@@ -1,13 +1,18 @@
 import { v4 } from "uuid";
-import { ITaskModel, TaskModel, TaskStatusEnum } from "../model";
-import { taskStore } from "../store";
+import { ITaskModel, TaskModel } from "../model";
+import { TaskStatusEnum } from "shared/types/task";
 import { TaskCreateTopic, TaskDeleteTopic } from "../bus";
 import { plainToInstance } from "class-transformer";
+import { ITaskListState } from "../store/store";
+import { StoreApi } from "zustand";
 
-export const TaskActions = () => {
+
+// TODO: Добавить вызов api
+// TODO: Добавить вызов eventBus
+export const TaskActions = (taskStore: StoreApi<ITaskListState>) => {
 
 	const createTaskAsync = async () => {
-		const prevState = taskStore.getState().tasklist;
+		const prevState = taskStore.getState().taskList;
 
 		const ch = v4();
 		const newTask = plainToInstance(TaskModel, {
@@ -18,7 +23,7 @@ export const TaskActions = () => {
 		})
 		
 		taskStore.setState({
-			tasklist: [...prevState, newTask]
+			taskList: [...prevState, newTask]
 		})
 	
 		TaskCreateTopic.emit(newTask);
@@ -26,12 +31,11 @@ export const TaskActions = () => {
 		return Promise.resolve(newTask);
 	};
 
-
 	const deleteTaskAsync = async ({ id }: Pick<ITaskModel, "id">) => {
-		const prevState = taskStore.getState().tasklist;
+		const prevState = taskStore.getState().taskList;
 		
 		taskStore.setState({
-			tasklist: prevState.filter(task => task.id !== id)
+			taskList: prevState.filter(task => task.id !== id)
 		})
 
 		// TODO: Проверить что задача удалилась

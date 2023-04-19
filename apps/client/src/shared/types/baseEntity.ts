@@ -19,3 +19,4 @@ export type BaseModelDatetimeType = {
 	updatedAt: Date | null,
 	completedAt?: Date | null
 }
+

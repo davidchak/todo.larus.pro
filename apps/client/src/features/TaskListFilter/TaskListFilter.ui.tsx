@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup';
-import { setTaskFilter, TaskStatusEnum, subscribeToTaskListChange } from "entities/Task";
-import { ITaskListFilter } from 'entities/Task/model';
+import { TaskStatusEnum } from 'shared/types/task';
+import { useTaskListStore, taskActions } from "entities/Task";
 
 type FilterItemType = {
 	label: string,
@@ -17,20 +17,17 @@ const filterItems: FilterItemType[] = [
 
 export const TaskListFilter = () => {
 	const [value, setValue] = useState<FilterItemType | null>(filterItems[0]);
+	const { taskFilters } = useTaskListStore();
+	const { setTaskFilterAsync  } = taskActions;
+
+	const onValueChange = async ({ value }: { value: FilterItemType }) => {
+		setValue(value);
+		await setTaskFilterAsync({ status: value.filter });
+	}
 
 	useEffect(() => {
-		const unsubscribe = subscribeToTaskListChange((data: ITaskListFilter["status"]) => {
-			const newFilterValue = filterItems.find(item => item.filter === data);
-			setValue(newFilterValue ? newFilterValue : filterItems[0])
-		})
-
-		return unsubscribe;
-	}, [])
-
-	const onValueChange = ({ value }: { value: FilterItemType }) => {
 		setValue(value);
-		setTaskFilter({ status: value.filter })
-	}
+	},[taskFilters])
 
   return (
     <ChoiceGroup

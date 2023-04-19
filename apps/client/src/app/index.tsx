@@ -1,9 +1,9 @@
 import { App } from "./bootstrap";
 
 // Setup window.api from features;
-import "processes/Api";
+// import "processes/Api";
 
 // Setup logger process;
-import "processes/Logger";
+// import "processes/Logger";
 
 export default App;

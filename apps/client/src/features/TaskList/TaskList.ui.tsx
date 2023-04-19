@@ -1,11 +1,10 @@
 import { Layout } from "@consta/uikit/Layout";
-import { TaskRow } from "entities/Task";
-import { useTaskListWithFilters } from "./useTaskListWithFilters.hook";
+import { useTaskListStore, TaskRow } from "entities/Task";
 
 // TODO: Заменить на таблицу
 // TODO: Добавить пагинацию 
 export const TaskList = () => {
-	const { taskList } = useTaskListWithFilters();
+	const { filteredTaskList } = useTaskListStore();
 
 	return (<Layout direction="column" style={{
 			overflowX: "scroll", 
@@ -16,6 +15,6 @@ export const TaskList = () => {
 			height: "inherit", 
 			flex: "1 0" 
 		}}>
-		{ taskList.map(task => <TaskRow key={ task.id } task={ task } />) }
+		{ filteredTaskList.map(task => <TaskRow key={ task.id } task={ task } />) }
 	</Layout>)
 }

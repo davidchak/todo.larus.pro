@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup';
-import { setTaskFilter, TaskStatusEnum } from "entities/Task";
+// import { } from "entities/Task";
+import { TaskStatusEnum } from 'shared/types/task';
 
 type FilterItemType = {
 	label: string,
