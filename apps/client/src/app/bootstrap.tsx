@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { RouterProvider } from "react-router-dom";
-import { router } from "../pages/router";
+import { router } from "./router";
 import { Theme, presetGpnDefault } from '@consta/uikit/Theme';
-import './assets/styles/global.scss';
+import 'assets/styles/global.scss';
 
 export const App: FC = () => {
   return(

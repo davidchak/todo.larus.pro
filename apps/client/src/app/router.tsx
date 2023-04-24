@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import { MainPage, mainPageLoader } from "./MainPage";
-import { AuthPage } from "./AuthPage";
-import { ErrorBoundary } from "./ErrorBoundary"; 
+import { MainPage, mainPageLoader } from "pages/MainPage";
+import { AuthPage } from "pages/AuthPage";
+import { ErrorBoundary } from "pages/ErrorBoundary"; 
 import { PageLayout } from "widgets/PageLayout";
+import { TasklistPage } from "pages/TasklistPage";
 
 
 export const router = createBrowserRouter([
@@ -14,6 +15,11 @@ export const router = createBrowserRouter([
 				path: "/",
 				element: <MainPage />,
 				loader: mainPageLoader,
+				errorElement: <ErrorBoundary />,
+			},
+			{
+				path: "/tasklist",
+				element: <TasklistPage />,
 				errorElement: <ErrorBoundary />,
 			},
 			{

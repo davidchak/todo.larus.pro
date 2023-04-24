@@ -8,7 +8,6 @@ const MainPage = () => {
   return (
 	<Layout direction="column" style={{ gap: "8px", width: "inherit", height: "inherit", display: "flex" }}>
 		<TaskPageHeader />
-		<hr style={{ width: "100%" }} />
 		<TaskPageContent />
 	</Layout>)
 }
