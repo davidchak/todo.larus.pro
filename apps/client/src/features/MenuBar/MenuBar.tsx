@@ -1,27 +1,38 @@
 import { Layout } from '@consta/uikit/Layout';
 import { CollapseGroup } from '@consta/uikit/CollapseGroup';
+import { BlockSeparator } from 'features/BlockSeparator';
+import styles from "./MenuBar.module.scss";
 
 const items = [
   {
-    label: 'Пункт раз',
-    content: 'Содержимое блока раз',
-    rightSide: 'Я справа',
+    label: 'Проекты и группы',
+    content: 'Пусто',
   },
   {
-    label: 'Пункт два',
-    content: 'Содержимое блока два',
-    rightSide: 'Я тоже справа',
+    label: 'Задачи',
+    content: 'Пусто',
   },
   {
-    label: 'Пункт три',
-    content: 'Содержимое блока три',
-    rightSide: 'И я :)',
+    label: 'Почта',
+    content: 'Пусто',
+  },
+  {
+    label: 'Файлы',
+    content: 'Пусто',
+  },
+  {
+    label: 'Финансы',
+    content: 'Пусто',
+  },
+  {
+    label: 'Настройки',
+    content: 'Пусто',
   },
 ]
 
-
 export const MenuBar = () => {
-	return(<Layout style={{flex: '0 0 300px', borderRight: "4px solid #E5E5E5" }}>
-		<CollapseGroup items={items} />
+	return(<Layout className={styles['menu-bar']}>
+		<CollapseGroup divider view='primary' isAccordion items={items} className={styles['menu-bar__list']}/>
+		<BlockSeparator />
 	</Layout>)
 }
