@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { MainPage, mainPageLoader } from "pages/MainPage";
 import { AuthPage } from "pages/AuthPage";
 import { ErrorBoundary } from "pages/ErrorBoundary"; 
-import { PageLayout } from "widgets/PageLayout";
+import { PageLayout } from "app/PageLayout";
 import { TasklistPage } from "pages/TasklistPage";
 
 

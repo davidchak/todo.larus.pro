@@ -3,7 +3,7 @@ import { Layout } from "@consta/uikit/Layout";
 import styles from "./PageLayout.module.scss";
 import { PageHeader } from "features/PageHeader";
 import { PageFooter } from "features/PageFooter";
-import { MenuBar } from "features/MenuBar";
+import { MenuBar } from "widgets/MenuBar";
 import { WidgetsBar } from "features/WidgetsBar";
 import { WidgetsViewport } from "features/WidgetsViewport";
 
